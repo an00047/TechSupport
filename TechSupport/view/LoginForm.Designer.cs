@@ -70,6 +70,7 @@ namespace TechSupport
             this.usernameTextBox.Name = "usernameTextBox";
             this.usernameTextBox.Size = new System.Drawing.Size(266, 30);
             this.usernameTextBox.TabIndex = 1;
+            this.usernameTextBox.TextChanged += new System.EventHandler(this.loginTextChanged);
             // 
             // loginButton
             // 
@@ -82,6 +83,7 @@ namespace TechSupport
             this.loginButton.TabIndex = 3;
             this.loginButton.Text = "Log In";
             this.loginButton.UseVisualStyleBackColor = true;
+            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
             // usernameLabel
             // 
@@ -133,6 +135,7 @@ namespace TechSupport
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.Size = new System.Drawing.Size(266, 30);
             this.passwordTextBox.TabIndex = 2;
+            this.passwordTextBox.TextChanged += new System.EventHandler(this.loginTextChanged);
             // 
             // loginForm
             // 
