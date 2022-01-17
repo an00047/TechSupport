@@ -8,13 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TechSupport
+namespace TechSupport.view
 {
-    public partial class loginForm : Form
+    //The LoginForm form utilized by the TechSupport application.
+    public partial class LoginForm : Form
     {
         String errorMessage;
+        public String username;
 
-        public loginForm()
+        //Constructs the LoginForm form
+        public LoginForm()
         {
             InitializeComponent();
         }
@@ -22,18 +25,24 @@ namespace TechSupport
         //Updates the error message displayed to the user 
         public void updateErrorMessage()
         {
-            errorTextBox.Text = errorMessage;
-            errorTextBox.ForeColor = Color.Red;
+            errorLabel.Text = errorMessage;
+            errorLabel.ForeColor = Color.Red;
         }
 
-        // Action handler for log in button click
+        // Action handler for log in button click.
+        // Opens new MainForm if login information is correct. Hides login screen
+        // Displayes error message if login information is incorrect
         private void loginButton_Click(object sender, EventArgs e)
         {
-            if (usernameTextBox.Text.Equals("Jane") 
+            if (usernameTextBox.Text.Equals("Jane")
                 && passwordTextBox.Text.Equals("test1234"))
             {
-                Console.WriteLine("username");
+                username = usernameTextBox.Text.ToString();
+                this.Hide();
+                MainForm newMainForm = new MainForm(usernameTextBox.Text.ToString());
+                newMainForm.Show();
             }
+
             else
             {
                 errorMessage = "Incorrect username/password";
@@ -41,10 +50,19 @@ namespace TechSupport
             }
         }
 
+        //Handles the text change action event. Resets the error message when
+        // Login information is changed
         private void loginTextChanged(object sender, EventArgs e)
         {
             errorMessage = "";
             updateErrorMessage();
+        }
+
+        //Handles the closing of the form window. 
+        //Closes the application on closure of the form
+        private void applicationClose(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
