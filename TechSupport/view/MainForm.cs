@@ -10,29 +10,41 @@ using System.Windows.Forms;
 
 namespace TechSupport.view
 {
-    // The MainForm form utilized by the TechSupport application
+    /// <summary>
+    /// Performs all of the operations for the MainForm form utilized in the 
+    /// TechSupport app
+    /// </summary>
     public partial class MainForm : Form
     {
-        //Constructs the MainForm
+        public LoginForm activeLoginForm;
         public MainForm(String username)
         {
             InitializeComponent();
             usernameLabel.Text = username;
         }
 
-        //Handles the log out feature. Hides the Main Form and opens a new loginForm
+
+        /// <summary>
+        /// Handles the log out feature. Hides the Main Form and opens a new loginForm
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LogoutLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Hide();
-            LoginForm newLoginForm = new LoginForm();
-            newLoginForm.Show();
+            activeLoginForm.Show();
         }
 
-        //Handles the closing of the form closing. Closes the application when the
-        //form is closed
+        /// <summary>
+        /// Handles the closing of the form closing. Closes the application when the
+        /// form is closed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ApplicationClose(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
         }
+
     }
 }

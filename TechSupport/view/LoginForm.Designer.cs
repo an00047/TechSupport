@@ -82,7 +82,7 @@ namespace TechSupport.view
             this.loginButton.TabIndex = 3;
             this.loginButton.Text = "Log In";
             this.loginButton.UseVisualStyleBackColor = true;
-            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
+            this.loginButton.Click += new System.EventHandler(this.LoginButton_Click);
             // 
             // usernameTextBox
             // 
@@ -92,7 +92,7 @@ namespace TechSupport.view
             this.usernameTextBox.Name = "usernameTextBox";
             this.usernameTextBox.Size = new System.Drawing.Size(266, 30);
             this.usernameTextBox.TabIndex = 1;
-            this.usernameTextBox.TextChanged += new System.EventHandler(this.loginTextChanged);
+            this.usernameTextBox.TextChanged += new System.EventHandler(this.LoginTextChanged);
             // 
             // passwordTextBox
             // 
@@ -103,7 +103,7 @@ namespace TechSupport.view
             this.passwordTextBox.PasswordChar = '*';
             this.passwordTextBox.Size = new System.Drawing.Size(266, 30);
             this.passwordTextBox.TabIndex = 2;
-            this.passwordTextBox.TextChanged += new System.EventHandler(this.loginTextChanged);
+            this.passwordTextBox.TextChanged += new System.EventHandler(this.LoginTextChanged);
             // 
             // passwordLabel
             // 
@@ -138,7 +138,7 @@ namespace TechSupport.view
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.applicationClose);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ApplicationClose);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

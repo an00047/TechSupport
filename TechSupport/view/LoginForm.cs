@@ -10,57 +10,82 @@ using System.Windows.Forms;
 
 namespace TechSupport.view
 {
-    //The LoginForm form utilized by the TechSupport application.
+    /// <summary>
+    /// Performs all of the operations for the LoginForm form utilized in the 
+    /// TechSupport app
+    /// </summary>
     public partial class LoginForm : Form
     {
         String errorMessage;
         public String username;
+        public MainForm activeMainForm;
 
-        //Constructs the LoginForm form
+
         public LoginForm()
         {
             InitializeComponent();
+            
         }
-
-        //Updates the error message displayed to the user 
-        public void updateErrorMessage()
+        /// <summary>
+        /// Updates the error message displayed to the user
+        /// </summary>
+        public void UpdateErrorMessage()
         {
             errorLabel.Text = errorMessage;
             errorLabel.ForeColor = Color.Red;
         }
 
-        // Action handler for log in button click.
-        // Opens new MainForm if login information is correct. Hides login screen
-        // Displayes error message if login information is incorrect
-        private void loginButton_Click(object sender, EventArgs e)
+
+        /// <summary>
+        /// Action handler for log in button click.
+        /// Opens new MainForm if login information is correct. Hides login screen
+        /// Displayes error message if login information is incorrect
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LoginButton_Click(object sender, EventArgs e)
         {
             if (usernameTextBox.Text.Equals("Jane")
                 && passwordTextBox.Text.Equals("test1234"))
             {
                 username = usernameTextBox.Text.ToString();
                 this.Hide();
-                MainForm newMainForm = new MainForm(usernameTextBox.Text.ToString());
-                newMainForm.Show();
+
+                if (activeMainForm == null)
+                {
+                    activeMainForm = new MainForm(username);
+                    activeMainForm.activeLoginForm = this;
+                    
+                }
+
+                activeMainForm.Show();
             }
 
             else
             {
                 errorMessage = "Incorrect username/password";
-                updateErrorMessage();
+                UpdateErrorMessage();
             }
         }
 
-        //Handles the text change action event. Resets the error message when
-        // Login information is changed
-        private void loginTextChanged(object sender, EventArgs e)
+        /// <summary>
+        ///Handles the text change action event. Resets the error message when
+        /// Login information is changed
+        /// </summary>
+        private void LoginTextChanged(object sender, EventArgs e)
         {
             errorMessage = "";
-            updateErrorMessage();
+            UpdateErrorMessage();
         }
 
-        //Handles the closing of the form window. 
-        //Closes the application on closure of the form
-        private void applicationClose(object sender, FormClosingEventArgs e)
+        /// <summary>
+        /// Handles the closing of the form window. 
+        /// Closes the application on closure of the form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        
+        private void ApplicationClose(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
         }
