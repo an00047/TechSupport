@@ -33,6 +33,7 @@ namespace TechSupport.view
             this.logoutLabel = new System.Windows.Forms.LinkLabel();
             this.incidentDataGridView = new System.Windows.Forms.DataGridView();
             this.addIncidentButton = new System.Windows.Forms.Button();
+            this.searchIncidentButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.incidentDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,11 +80,23 @@ namespace TechSupport.view
             this.addIncidentButton.UseVisualStyleBackColor = true;
             this.addIncidentButton.Click += new System.EventHandler(this.addIncidentButton_Click);
             // 
+            // searchIncidentButton
+            // 
+            this.searchIncidentButton.Location = new System.Drawing.Point(220, 35);
+            this.searchIncidentButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.searchIncidentButton.Name = "searchIncidentButton";
+            this.searchIncidentButton.Size = new System.Drawing.Size(166, 48);
+            this.searchIncidentButton.TabIndex = 4;
+            this.searchIncidentButton.Text = "Search Incident";
+            this.searchIncidentButton.UseVisualStyleBackColor = true;
+            this.searchIncidentButton.Click += new System.EventHandler(this.searchIncidentButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(664, 377);
+            this.Controls.Add(this.searchIncidentButton);
             this.Controls.Add(this.addIncidentButton);
             this.Controls.Add(this.incidentDataGridView);
             this.Controls.Add(this.logoutLabel);
@@ -109,5 +122,6 @@ namespace TechSupport.view
         private System.Windows.Forms.LinkLabel logoutLabel;
         private System.Windows.Forms.DataGridView incidentDataGridView;
         private System.Windows.Forms.Button addIncidentButton;
+        private System.Windows.Forms.Button searchIncidentButton;
     }
 }

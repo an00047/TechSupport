@@ -11,10 +11,16 @@ using TechSupport.controller;
 
 namespace TechSupport.model
 {
+    /// <summary>
+    /// Form that handles the process for adding an incident to the instance
+    /// </summary>
     public partial class AddIncidentDialog : Form
     {
         private readonly IncidentController incidentController;
 
+        /// <summary>
+        /// Initializes a new IncidentController instance
+        /// </summary>
         public AddIncidentDialog()
         {
             InitializeComponent();

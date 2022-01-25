@@ -36,13 +36,6 @@ namespace TechSupport.view
         }
 
 
-        /// <summary>
-        /// Action handler for log in button click.
-        /// Opens new MainForm if login information is correct. Hides login screen
-        /// Displayes error message if login information is incorrect
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void LoginButton_Click(object sender, EventArgs e)
         {
             if (usernameTextBox.Text.Equals("Jane")
@@ -68,23 +61,12 @@ namespace TechSupport.view
             }
         }
 
-        /// <summary>
-        ///Handles the text change action event. Resets the error message when
-        /// Login information is changed
-        /// </summary>
         private void LoginTextChanged(object sender, EventArgs e)
         {
             errorMessage = "";
             UpdateErrorMessage();
         }
 
-        /// <summary>
-        /// Handles the closing of the form window. 
-        /// Closes the application on closure of the form
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        
         private void ApplicationClose(object sender, FormClosingEventArgs e)
         {
             Application.Exit();

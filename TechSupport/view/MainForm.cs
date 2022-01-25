@@ -21,6 +21,11 @@ namespace TechSupport.view
         private readonly IncidentController incidentController;
         public LoginForm activeLoginForm;
 
+        /// <summary>
+        /// Initializes the username as the username in the parameter
+        /// Initializes a new instance of IncidentController
+        /// </summary>
+        /// <param name="username"></param>
         public MainForm(String username)
         {
             InitializeComponent();
@@ -28,24 +33,12 @@ namespace TechSupport.view
             this.incidentController = new IncidentController();
         }
 
-
-        /// <summary>
-        /// Handles the log out feature. Hides the Main Form and opens a new loginForm
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void LogoutLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Hide();
             activeLoginForm.Show();
         }
 
-        /// <summary>
-        /// Handles the closing of the form closing. Closes the application when the
-        /// form is closed
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void ApplicationClose(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
@@ -71,6 +64,14 @@ namespace TechSupport.view
             {
                 this.RefreshDataGrid();
             };
+        }
+
+        private void searchIncidentButton_Click(object sender, EventArgs e)
+        {
+            Form searchIncidentDialog = new SearchIncidentDialog();
+
+            DialogResult result = searchIncidentDialog.ShowDialog();
+
         }
     }
 }
