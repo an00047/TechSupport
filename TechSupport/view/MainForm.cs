@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TechSupport.controller;
+using TechSupport.model;
 
 namespace TechSupport.view
 {
@@ -16,11 +18,14 @@ namespace TechSupport.view
     /// </summary>
     public partial class MainForm : Form
     {
+        private readonly IncidentController incidentController;
         public LoginForm activeLoginForm;
+
         public MainForm(String username)
         {
             InitializeComponent();
             usernameLabel.Text = username;
+            this.incidentController = new IncidentController();
         }
 
 
@@ -46,5 +51,26 @@ namespace TechSupport.view
             Application.Exit();
         }
 
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            this.RefreshDataGrid();
+        }
+
+        private void RefreshDataGrid()
+        {
+            this.incidentDataGridView.DataSource = null;
+            this.incidentDataGridView.DataSource = this.incidentController.GetIncidents();
+        }
+
+        private void addIncidentButton_Click(object sender, EventArgs e)
+        {
+            Form addIncidentDialog = new AddIncidentDialog();
+            DialogResult result = addIncidentDialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                this.RefreshDataGrid();
+            };
+        }
     }
 }

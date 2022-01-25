@@ -77,6 +77,7 @@ namespace TechSupport.view
             this.addIncidentButton.TabIndex = 3;
             this.addIncidentButton.Text = "Add Incident";
             this.addIncidentButton.UseVisualStyleBackColor = true;
+            this.addIncidentButton.Click += new System.EventHandler(this.addIncidentButton_Click);
             // 
             // MainForm
             // 
@@ -95,6 +96,7 @@ namespace TechSupport.view
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main Form";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ApplicationClose);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.incidentDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -46,7 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="controller\IncidentController.cs" />
     <Compile Include="DAL\IncidentDAL.cs" />
+    <Compile Include="view\AddIncidentDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\AddIncidentDialog.Designer.cs">
+      <DependentUpon>AddIncidentDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="model\Incident.cs" />
     <Compile Include="view\LoginForm.cs">
       <SubType>Form</SubType>
@@ -71,6 +78,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="view\AddIncidentDialog.resx">
+      <DependentUpon>AddIncidentDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -90,8 +100,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="controller\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

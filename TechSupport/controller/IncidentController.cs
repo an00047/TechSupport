@@ -3,24 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TechSupport.DAL;
 using TechSupport.model;
 
-namespace TechSupport.DAL { 
-    
+namespace TechSupport.controller
+{
     /// <summary>
-    /// Creates a list of Incident items 
+    /// Controls the data from the IncidentDAL that is utilized by the MainForm
     /// </summary>
-    public class IncidentDAL
+    public class IncidentController
     {
-
-        private static List<Incident> incidents = new List<Incident>
+        private IncidentDAL incidentSource;
+        
+        public IncidentController()
         {
-
-        };
+            this.incidentSource = new IncidentDAL();
+        }
 
         public List<Incident> GetIncidents()
         {
-            return incidents;
+            return this.incidentSource.GetIncidents();
         }
 
         public void Add(Incident incident)
@@ -29,8 +31,12 @@ namespace TechSupport.DAL {
             {
                 throw new ArgumentNullException("Movie cannot be null");
             }
-            incidents.Add(incident);
+            this.incidentSource.Add(incident);
         }
+
+
+
+
 
     }
 }
