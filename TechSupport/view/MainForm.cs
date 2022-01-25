@@ -21,7 +21,7 @@ namespace TechSupport.view
         }
 
         //Handles the log out feature. Hides the Main Form and opens a new loginForm
-        private void logoutLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LogoutLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Hide();
             LoginForm newLoginForm = new LoginForm();
@@ -30,7 +30,7 @@ namespace TechSupport.view
 
         //Handles the closing of the form closing. Closes the application when the
         //form is closed
-        private void applicationClose(object sender, FormClosingEventArgs e)
+        private void ApplicationClose(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
         }
