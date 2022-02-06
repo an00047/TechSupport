@@ -12,9 +12,15 @@ namespace TechSupport.view
 {
     public partial class MainDashboard : Form
     {
-        public MainDashboard()
+        public LoginForm activeLoginForm;
+        public MainDashboard(String username)
         {
             InitializeComponent();
+        }
+
+        private void ApplicationClose(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

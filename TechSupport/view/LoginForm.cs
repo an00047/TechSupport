@@ -18,7 +18,7 @@ namespace TechSupport.view
     {
         String errorMessage;
         public String username;
-        public MainForm activeMainForm;
+        public MainDashboard activeMainForm;
 
 
         public LoginForm()
@@ -46,7 +46,7 @@ namespace TechSupport.view
 
                 if (activeMainForm == null)
                 {
-                    activeMainForm = new MainForm(username);
+                    activeMainForm = new MainDashboard(username);
                     activeMainForm.activeLoginForm = this;
                     
                 }
