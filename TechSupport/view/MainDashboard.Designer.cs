@@ -31,21 +31,18 @@ namespace TechSupport.view
         {
             this.MainDashboardTabControl = new System.Windows.Forms.TabControl();
             this.AddIncidentTabPage = new System.Windows.Forms.TabPage();
-            this.addIncidentUserControl1 = new TechSupport.UserControls.AddIncidentUserControl();
+            this.addIncidentUserControl2 = new TechSupport.UserControls.AddIncidentUserControl();
             this.AllIncidentsTabPage = new System.Windows.Forms.TabPage();
-            this.incidentDataGridView = new System.Windows.Forms.DataGridView();
+            this.allIncidentsUserControl1 = new TechSupport.UserControls.AllIncidentsUserControl();
             this.SearchIncidentTabPage = new System.Windows.Forms.TabPage();
-            this.CancelButton = new System.Windows.Forms.Button();
-            this.SearchButton = new System.Windows.Forms.Button();
-            this.SearchIncidentTextbox = new System.Windows.Forms.TextBox();
-            this.CustomerIDLabel = new System.Windows.Forms.Label();
-            this.SearchIncidentDataGridView = new System.Windows.Forms.DataGridView();
+            this.searchIncidentUserControl1 = new TechSupport.UserControls.SearchIncidentUserControl();
+            this.addIncidentUserControl1 = new TechSupport.UserControls.AddIncidentUserControl();
+            this.logoutLabel = new System.Windows.Forms.LinkLabel();
+            this.usernameLabel = new System.Windows.Forms.Label();
             this.MainDashboardTabControl.SuspendLayout();
             this.AddIncidentTabPage.SuspendLayout();
             this.AllIncidentsTabPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.incidentDataGridView)).BeginInit();
             this.SearchIncidentTabPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.SearchIncidentDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // MainDashboardTabControl
@@ -59,10 +56,11 @@ namespace TechSupport.view
             this.MainDashboardTabControl.SelectedIndex = 0;
             this.MainDashboardTabControl.Size = new System.Drawing.Size(801, 470);
             this.MainDashboardTabControl.TabIndex = 0;
+            this.MainDashboardTabControl.SelectedIndexChanged += new System.EventHandler(this.LoadIncidents);
             // 
             // AddIncidentTabPage
             // 
-            this.AddIncidentTabPage.Controls.Add(this.addIncidentUserControl1);
+            this.AddIncidentTabPage.Controls.Add(this.addIncidentUserControl2);
             this.AddIncidentTabPage.Location = new System.Drawing.Point(4, 29);
             this.AddIncidentTabPage.Name = "AddIncidentTabPage";
             this.AddIncidentTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -70,6 +68,52 @@ namespace TechSupport.view
             this.AddIncidentTabPage.TabIndex = 0;
             this.AddIncidentTabPage.Text = "Add Incident";
             this.AddIncidentTabPage.UseVisualStyleBackColor = true;
+            // 
+            // addIncidentUserControl2
+            // 
+            this.addIncidentUserControl2.Location = new System.Drawing.Point(-138, 8);
+            this.addIncidentUserControl2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.addIncidentUserControl2.Name = "addIncidentUserControl2";
+            this.addIncidentUserControl2.Size = new System.Drawing.Size(906, 425);
+            this.addIncidentUserControl2.TabIndex = 0;
+            // 
+            // AllIncidentsTabPage
+            // 
+            this.AllIncidentsTabPage.Controls.Add(this.allIncidentsUserControl1);
+            this.AllIncidentsTabPage.Location = new System.Drawing.Point(4, 29);
+            this.AllIncidentsTabPage.Name = "AllIncidentsTabPage";
+            this.AllIncidentsTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.AllIncidentsTabPage.Size = new System.Drawing.Size(793, 437);
+            this.AllIncidentsTabPage.TabIndex = 1;
+            this.AllIncidentsTabPage.Text = "All Incidents";
+            this.AllIncidentsTabPage.UseVisualStyleBackColor = true;
+            // 
+            // allIncidentsUserControl1
+            // 
+            this.allIncidentsUserControl1.Location = new System.Drawing.Point(-83, -51);
+            this.allIncidentsUserControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.allIncidentsUserControl1.Name = "allIncidentsUserControl1";
+            this.allIncidentsUserControl1.Size = new System.Drawing.Size(880, 501);
+            this.allIncidentsUserControl1.TabIndex = 0;
+            // 
+            // SearchIncidentTabPage
+            // 
+            this.SearchIncidentTabPage.Controls.Add(this.searchIncidentUserControl1);
+            this.SearchIncidentTabPage.Location = new System.Drawing.Point(4, 29);
+            this.SearchIncidentTabPage.Name = "SearchIncidentTabPage";
+            this.SearchIncidentTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.SearchIncidentTabPage.Size = new System.Drawing.Size(793, 437);
+            this.SearchIncidentTabPage.TabIndex = 2;
+            this.SearchIncidentTabPage.Text = "Search Incident";
+            this.SearchIncidentTabPage.UseVisualStyleBackColor = true;
+            // 
+            // searchIncidentUserControl1
+            // 
+            this.searchIncidentUserControl1.Location = new System.Drawing.Point(-224, -168);
+            this.searchIncidentUserControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.searchIncidentUserControl1.Name = "searchIncidentUserControl1";
+            this.searchIncidentUserControl1.Size = new System.Drawing.Size(1020, 609);
+            this.searchIncidentUserControl1.TabIndex = 0;
             // 
             // addIncidentUserControl1
             // 
@@ -79,104 +123,47 @@ namespace TechSupport.view
             this.addIncidentUserControl1.Size = new System.Drawing.Size(940, 397);
             this.addIncidentUserControl1.TabIndex = 0;
             // 
-            // AllIncidentsTabPage
+            // logoutLabel
             // 
-            this.AllIncidentsTabPage.Controls.Add(this.incidentDataGridView);
-            this.AllIncidentsTabPage.Location = new System.Drawing.Point(4, 29);
-            this.AllIncidentsTabPage.Name = "AllIncidentsTabPage";
-            this.AllIncidentsTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.AllIncidentsTabPage.Size = new System.Drawing.Size(793, 437);
-            this.AllIncidentsTabPage.TabIndex = 1;
-            this.AllIncidentsTabPage.Text = "All Incidents";
-            this.AllIncidentsTabPage.UseVisualStyleBackColor = true;
+            this.logoutLabel.AutoSize = true;
+            this.logoutLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.logoutLabel.Location = new System.Drawing.Point(694, 9);
+            this.logoutLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.logoutLabel.Name = "logoutLabel";
+            this.logoutLabel.Size = new System.Drawing.Size(82, 25);
+            this.logoutLabel.TabIndex = 3;
+            this.logoutLabel.TabStop = true;
+            this.logoutLabel.Text = "Log Out";
+            this.logoutLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.logoutLabel_LinkClicked);
             // 
-            // incidentDataGridView
+            // usernameLabel
             // 
-            this.incidentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.incidentDataGridView.Location = new System.Drawing.Point(7, 69);
-            this.incidentDataGridView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.incidentDataGridView.Name = "incidentDataGridView";
-            this.incidentDataGridView.Size = new System.Drawing.Size(561, 240);
-            this.incidentDataGridView.TabIndex = 3;
-            // 
-            // SearchIncidentTabPage
-            // 
-            this.SearchIncidentTabPage.Controls.Add(this.CancelButton);
-            this.SearchIncidentTabPage.Controls.Add(this.SearchButton);
-            this.SearchIncidentTabPage.Controls.Add(this.SearchIncidentTextbox);
-            this.SearchIncidentTabPage.Controls.Add(this.CustomerIDLabel);
-            this.SearchIncidentTabPage.Controls.Add(this.SearchIncidentDataGridView);
-            this.SearchIncidentTabPage.Location = new System.Drawing.Point(4, 29);
-            this.SearchIncidentTabPage.Name = "SearchIncidentTabPage";
-            this.SearchIncidentTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.SearchIncidentTabPage.Size = new System.Drawing.Size(793, 437);
-            this.SearchIncidentTabPage.TabIndex = 2;
-            this.SearchIncidentTabPage.Text = "Search Incident";
-            this.SearchIncidentTabPage.UseVisualStyleBackColor = true;
-            // 
-            // CancelButton
-            // 
-            this.CancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.CancelButton.Location = new System.Drawing.Point(419, 327);
-            this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(111, 37);
-            this.CancelButton.TabIndex = 13;
-            this.CancelButton.Text = "Cancel";
-            this.CancelButton.UseVisualStyleBackColor = true;
-            // 
-            // SearchButton
-            // 
-            this.SearchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.SearchButton.Location = new System.Drawing.Point(419, 11);
-            this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(111, 37);
-            this.SearchButton.TabIndex = 12;
-            this.SearchButton.Text = "Search";
-            this.SearchButton.UseVisualStyleBackColor = true;
-            // 
-            // SearchIncidentTextbox
-            // 
-            this.SearchIncidentTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.SearchIncidentTextbox.Location = new System.Drawing.Point(174, 14);
-            this.SearchIncidentTextbox.Name = "SearchIncidentTextbox";
-            this.SearchIncidentTextbox.Size = new System.Drawing.Size(227, 30);
-            this.SearchIncidentTextbox.TabIndex = 10;
-            // 
-            // CustomerIDLabel
-            // 
-            this.CustomerIDLabel.AutoSize = true;
-            this.CustomerIDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.CustomerIDLabel.Location = new System.Drawing.Point(47, 19);
-            this.CustomerIDLabel.Name = "CustomerIDLabel";
-            this.CustomerIDLabel.Size = new System.Drawing.Size(121, 25);
-            this.CustomerIDLabel.TabIndex = 11;
-            this.CustomerIDLabel.Text = "Customer ID";
-            // 
-            // SearchIncidentDataGridView
-            // 
-            this.SearchIncidentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.SearchIncidentDataGridView.Location = new System.Drawing.Point(47, 56);
-            this.SearchIncidentDataGridView.Name = "SearchIncidentDataGridView";
-            this.SearchIncidentDataGridView.Size = new System.Drawing.Size(483, 263);
-            this.SearchIncidentDataGridView.TabIndex = 9;
+            this.usernameLabel.AutoSize = true;
+            this.usernameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.usernameLabel.Location = new System.Drawing.Point(619, 9);
+            this.usernameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.usernameLabel.Name = "usernameLabel";
+            this.usernameLabel.Size = new System.Drawing.Size(0, 25);
+            this.usernameLabel.TabIndex = 2;
             // 
             // MainDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(817, 505);
+            this.ClientSize = new System.Drawing.Size(817, 509);
+            this.Controls.Add(this.logoutLabel);
+            this.Controls.Add(this.usernameLabel);
             this.Controls.Add(this.MainDashboardTabControl);
             this.Name = "MainDashboard";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainDashboard";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ApplicationClose);
             this.MainDashboardTabControl.ResumeLayout(false);
             this.AddIncidentTabPage.ResumeLayout(false);
             this.AllIncidentsTabPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.incidentDataGridView)).EndInit();
             this.SearchIncidentTabPage.ResumeLayout(false);
-            this.SearchIncidentTabPage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.SearchIncidentDataGridView)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -186,12 +173,11 @@ namespace TechSupport.view
         private System.Windows.Forms.TabPage AddIncidentTabPage;
         private System.Windows.Forms.TabPage AllIncidentsTabPage;
         private System.Windows.Forms.TabPage SearchIncidentTabPage;
-        private System.Windows.Forms.Button CancelButton;
-        private System.Windows.Forms.Button SearchButton;
-        private System.Windows.Forms.TextBox SearchIncidentTextbox;
-        private System.Windows.Forms.Label CustomerIDLabel;
-        private System.Windows.Forms.DataGridView SearchIncidentDataGridView;
-        private System.Windows.Forms.DataGridView incidentDataGridView;
         private UserControls.AddIncidentUserControl addIncidentUserControl1;
+        private UserControls.AddIncidentUserControl addIncidentUserControl2;
+        private UserControls.AllIncidentsUserControl allIncidentsUserControl1;
+        private UserControls.SearchIncidentUserControl searchIncidentUserControl1;
+        private System.Windows.Forms.LinkLabel logoutLabel;
+        private System.Windows.Forms.Label usernameLabel;
     }
 }

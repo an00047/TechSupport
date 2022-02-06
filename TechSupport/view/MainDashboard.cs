@@ -16,11 +16,25 @@ namespace TechSupport.view
         public MainDashboard(String username)
         {
             InitializeComponent();
+            usernameLabel.Text = username;
+
         }
 
         private void ApplicationClose(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
+
+        private void LoadIncidents(object sender, EventArgs e)
+        {
+            this.allIncidentsUserControl1.RefreshSelection(); 
+        }
+
+        private void logoutLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            activeLoginForm.Show();
+        }
     }
 }
+
