@@ -46,14 +46,21 @@ namespace TechSupport.DAL
                         {
                             DBIncident incident = new DBIncident();
                             incident.ProductCode = reader.GetString(productCodeOrd);
-                            incident.DateOpened = reader.GetDateTime(dateOpenedOrd);
+                            incident.DateOpened = reader.GetString(dateOpenedOrd);
                             incident.Customer = reader.GetString(customerNameOrd);
-                            incident.Techniciam = reader.GetString(titleOrd);
+                            incident.Technician = reader.GetString(titleOrd);
                             incident.Title = reader.GetString(titleOrd);
                         }
+                    if (connection != null)
+                            throw new ArgumentNullException("Connection is null");
+                        if (reader != null)
+                            throw new ArgumentNullException("Reader is null");
+
                     }
                 }
+            
             }
+            
             return openIncidentList;
             
         }

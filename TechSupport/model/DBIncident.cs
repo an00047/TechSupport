@@ -13,9 +13,9 @@ namespace TechSupport.model
     {
 
         public String ProductCode { get; set; }
-        public DateTime DateOpened { get; set; }
+        public String DateOpened { get; set; }
         public String Customer { get; set; }
-        public String Techniciam { get; set; }
+        public String Technician { get; set; }
         public String Title { get; set; }
     }
 }

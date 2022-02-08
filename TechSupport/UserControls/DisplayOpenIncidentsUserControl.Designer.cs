@@ -90,6 +90,7 @@ namespace TechSupport.UserControls
             this.Controls.Add(this.openIncidentsListView);
             this.Name = "DisplayOpenIncidentsUserControl";
             this.Size = new System.Drawing.Size(751, 473);
+            this.Load += new System.EventHandler(this.DisplayOpenIncidentsUserControl_Load);
             this.ResumeLayout(false);
 
         }
