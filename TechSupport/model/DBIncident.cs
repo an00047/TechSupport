@@ -6,18 +6,11 @@ using System.Threading.Tasks;
 
 namespace TechSupport.model
 {
-    class DBIncident
+    /// <summary>
+    /// The class defining the DBIncident
+    /// </summary>
+    public class DBIncident
     {
-        private String productCode;
-        private DateTime dateOpened;
-        private String customer;
-        private String technician;
-        private String title;
-
-        public DBIncident()
-        {
-
-        }
 
         public String ProductCode { get; set; }
         public DateTime DateOpened { get; set; }

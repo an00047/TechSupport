@@ -14,10 +14,12 @@ namespace TechSupport.controller
     public class IncidentController
     {
         private IncidentDAL incidentSource;
+        private IncidentDBDAL incidentDBSource;
         
         public IncidentController()
         {
             this.incidentSource = new IncidentDAL();
+            this.incidentDBSource = new IncidentDBDAL();
         }
 
         /// <summary>
@@ -57,7 +59,15 @@ namespace TechSupport.controller
             return this.incidentSource.GetIncidentsByCustomerID(customerID);
         }
 
-        
+        /// <summary>
+        /// Gets all of the open incidents for the current instance from the 
+        /// TechSupport MySQL database
+        /// </summary>
+        /// <returns>The list of all incidents that have null or empty close dates</returns>
+        public List<DBIncident> GetOpenIncidents()
+        {
+            return this.incidentDBSource.GetOpenIncidents();
+        }
 
 
 

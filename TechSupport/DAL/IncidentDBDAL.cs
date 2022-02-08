@@ -8,9 +8,16 @@ using TechSupport.model;
 
 namespace TechSupport.DAL
 {
-    public static class IncidentDBDAL
+    /// <summary>
+    /// Retrieves data from the database via MySql Queries
+    /// </summary>
+    class IncidentDBDAL
     {
-        public static List<DBIncident> GetOpenIncidents()
+        /// <summary>
+        /// Retrieves incidents from the database where the DateClosed is null or empty
+        /// </summary>
+        /// <returns> List of open incidents</returns>
+        public List<DBIncident> GetOpenIncidents()
         {
             List<DBIncident> openIncidentList = new List<DBIncident>();
 
@@ -47,6 +54,7 @@ namespace TechSupport.DAL
                     }
                 }
             }
+            return openIncidentList;
             
         }
         
