@@ -55,6 +55,8 @@
     <Compile Include="controller\IncidentController.cs" />
     <Compile Include="DAL\IncidentDAL.cs" />
     <Compile Include="DAL\IncidentDBDAL.cs" />
+    <Compile Include="DAL\TechSupportDBConnection.cs" />
+    <Compile Include="model\DBIncident.cs" />
     <Compile Include="UserControls\AddIncidentUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
