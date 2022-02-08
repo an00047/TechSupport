@@ -47,9 +47,9 @@ namespace TechSupport.UserControls
             this.technician,
             this.title});
             this.openIncidentsListView.HideSelection = false;
-            this.openIncidentsListView.Location = new System.Drawing.Point(120, 88);
+            this.openIncidentsListView.Location = new System.Drawing.Point(3, 39);
             this.openIncidentsListView.Name = "openIncidentsListView";
-            this.openIncidentsListView.Size = new System.Drawing.Size(535, 265);
+            this.openIncidentsListView.Size = new System.Drawing.Size(732, 343);
             this.openIncidentsListView.TabIndex = 0;
             this.openIncidentsListView.UseCompatibleStateImageBehavior = false;
             this.openIncidentsListView.View = System.Windows.Forms.View.Details;
@@ -57,13 +57,13 @@ namespace TechSupport.UserControls
             // productCode
             // 
             this.productCode.Text = "Product Code";
-            this.productCode.Width = 83;
+            this.productCode.Width = 152;
             // 
             // dateOpened
             // 
             this.dateOpened.Text = "Date Opened";
             this.dateOpened.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.dateOpened.Width = 80;
+            this.dateOpened.Width = 77;
             // 
             // customer
             // 
@@ -81,15 +81,14 @@ namespace TechSupport.UserControls
             // 
             this.title.Text = "Title";
             this.title.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.title.Width = 194;
+            this.title.Width = 186;
             // 
             // DisplayOpenIncidentsUserControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.Controls.Add(this.openIncidentsListView);
             this.Name = "DisplayOpenIncidentsUserControl";
-            this.Size = new System.Drawing.Size(751, 473);
+            this.Size = new System.Drawing.Size(754, 413);
             this.Load += new System.EventHandler(this.DisplayOpenIncidentsUserControl_Load);
             this.ResumeLayout(false);
 

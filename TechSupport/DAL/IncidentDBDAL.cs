@@ -20,49 +20,41 @@ namespace TechSupport.DAL
         public List<DBIncident> GetOpenIncidents()
         {
             List<DBIncident> openIncidentList = new List<DBIncident>();
-
+            SqlConnection connection = TechSupportDBConnection.GetConnection();
             string selectStatement =
-                "SELECT p.ProductCode,  DATE_FORMAT(i.DateOpened, '%m/%d/%y'), c.Name, t.Name, i.title" +
-                "FROM Incidents i JOIN Products p ON i.ProductCode = p.ProductCode" +
-                "JOIN Technicians t ON i.TechID = t.TechID" +
-                "JOIN Customers c ON i.CustomerID = c.CustomerID" +
-                "WHERE i.DateClosed IS NULL or i.DateClosed = ''";
+                "SELECT Products.ProductCode, FORMAT(Incidents.DateOpened, 'MM-dd-yyyy') as date, Customers.Name, Technicians.Name AS techName, Incidents.title " +
+                "FROM Incidents " +
+                "JOIN Products ON Incidents.ProductCode = Products.ProductCode " +
+                "LEFT JOIN Technicians ON Incidents.TechID = Technicians.TechID " +
+                "JOIN Customers ON Incidents.CustomerID = Customers.CustomerID " +
+                "WHERE Incidents.DateClosed IS NULL or Incidents.DateClosed = '';";
 
-            
-            using (SqlConnection connection = TechSupportDBConnection.GetConnection())
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            SqlDataReader reader= null;
+            try
             {
                 connection.Open();
-
-                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                reader = selectCommand.ExecuteReader();
+                while (reader.Read())
                 {
-                    using (SqlDataReader reader = selectCommand.ExecuteReader())
-                    {
-                        int productCodeOrd = reader.GetOrdinal("ProductCode");
-                        int dateOpenedOrd = reader.GetOrdinal("DateOpened");
-                        int customerNameOrd = reader.GetOrdinal("Name");
-                        int technicianNameOrd = reader.GetOrdinal("Name");
-                        int titleOrd = reader.GetOrdinal("Title");
-                        while (reader.Read())
-                        {
-                            DBIncident incident = new DBIncident();
-                            incident.ProductCode = reader.GetString(productCodeOrd);
-                            incident.DateOpened = reader.GetString(dateOpenedOrd);
-                            incident.Customer = reader.GetString(customerNameOrd);
-                            incident.Technician = reader.GetString(titleOrd);
-                            incident.Title = reader.GetString(titleOrd);
-                        }
-                    if (connection != null)
-                            throw new ArgumentNullException("Connection is null");
-                        if (reader != null)
-                            throw new ArgumentNullException("Reader is null");
-
-                    }
+                    DBIncident incident = new DBIncident();
+                    incident.ProductCode = reader["ProductCode"].ToString();
+                    incident.DateOpened = reader["date"].ToString();
+                    incident.Customer = reader["Name"].ToString();
+                    incident.Technician = reader["techName"].ToString();
+                    incident.Title = reader["Title"].ToString();
+                    openIncidentList.Add(incident);
                 }
-            
             }
-            
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+                if (reader != null)
+                    reader.Close();
+            }
             return openIncidentList;
-            
+           
         }
         
     }

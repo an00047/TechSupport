@@ -1,18 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TechSupport.view
 {
+    /// <summary>
+    /// 
+    /// Builds the dashboard that holds the tab pages
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class MainDashboard : Form
     {
         public LoginForm activeLoginForm;
+
+        /// <summary>
+        /// Assigns the username instance variable to the current instance of username that 
+        /// is passed in
+        /// </summary>
+        /// <param name="username">The username.</param>
         public MainDashboard(String username)
         {
             InitializeComponent();

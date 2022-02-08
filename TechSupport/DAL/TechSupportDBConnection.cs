@@ -20,7 +20,7 @@ namespace TechSupport.DAL
         {
             string connectionString =
                 "Data Source=localhost;Initial Catalog=TechSupport;" +
-                "IntegratedSecurity=True";
+                "Integrated Security=True";
             SqlConnection connection = new SqlConnection(connectionString);
             return connection;
         }

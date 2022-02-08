@@ -52,8 +52,12 @@ namespace TechSupport.UserControls
                         openIncidentsListView.Items[i].SubItems.Add(incident.Title);
                     }
                 }
-                MessageBox.Show("There are no open incidents at this time",
+                else
+                {
+                    MessageBox.Show("There are no open incidents at this time",
                     "No Opem Incidents", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                
             }
             catch (Exception ex)
             {
