@@ -30,7 +30,7 @@ namespace TechSupport.view
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Not a valid customerID \n" + ex.Message,
+                MessageBox.Show("Not a valid customerID. CustomerID should be a number\n" + ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

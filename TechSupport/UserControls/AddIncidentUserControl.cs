@@ -30,7 +30,7 @@ namespace TechSupport.UserControls
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Something is wrong with the input \n" + ex.Message,
+                MessageBox.Show("All three items must be entered. Customer ID should be a number \n" + ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
