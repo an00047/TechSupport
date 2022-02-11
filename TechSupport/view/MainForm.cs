@@ -48,7 +48,7 @@ namespace TechSupport.view
             this.incidentDataGridView.DataSource = this.incidentController.GetIncidents();
         }
 
-        private void addIncidentButton_Click(object sender, EventArgs e)
+        private void AddIncidentButton_Click(object sender, EventArgs e)
         {
             Form addIncidentDialog = new AddIncidentDialog();
             DialogResult result = addIncidentDialog.ShowDialog();
@@ -59,7 +59,7 @@ namespace TechSupport.view
             };
         }
 
-        private void searchIncidentButton_Click(object sender, EventArgs e)
+        private void SearchIncidentButton_Click(object sender, EventArgs e)
         {
             Form searchIncidentDialog = new SearchIncidentDialog();
 

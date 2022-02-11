@@ -34,7 +34,7 @@ namespace TechSupport.view
             this.allIncidentsUserControl1.RefreshSelection(); 
         }
 
-        private void logoutLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LogoutLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Hide();
             activeLoginForm.Show();
