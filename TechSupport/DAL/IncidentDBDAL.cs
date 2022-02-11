@@ -27,28 +27,29 @@ namespace TechSupport.DAL
 
             SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
             SqlDataReader reader= null;
-            try
+
+
+            using (connection)
             {
                 connection.Open();
-                reader = selectCommand.ExecuteReader();
-                while (reader.Read())
+                using (selectCommand)
                 {
-                    DBIncident incident = new DBIncident();
-                    incident.ProductCode = reader["ProductCode"].ToString();
-                    incident.DateOpened = reader["date"].ToString();
-                    incident.Customer = reader["Name"].ToString();
-                    incident.Technician = reader["techName"].ToString();
-                    incident.Title = reader["Title"].ToString();
-                    openIncidentList.Add(incident);
+                    using (reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            DBIncident incident = new DBIncident();
+                            incident.ProductCode = reader["ProductCode"].ToString();
+                            incident.DateOpened = reader["date"].ToString();
+                            incident.Customer = reader["Name"].ToString();
+                            incident.Technician = reader["techName"].ToString();
+                            incident.Title = reader["Title"].ToString();
+                            openIncidentList.Add(incident);
+                        }
+                    }
                 }
             }
-            finally
-            {
-                if (connection != null)
-                    connection.Close();
-                if (reader != null)
-                    reader.Close();
-            }
+
             return openIncidentList;
            
         }
