@@ -13,5 +13,7 @@ namespace TechSupport.model
         public String Customer { get; set; }
         public String Technician { get; set; }
         public String Title { get; set; }
+        public string Description { get; set; }
+        public int CustomerID { get; set; }
     }
 }

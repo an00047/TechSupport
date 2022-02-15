@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using TechSupport.model;
 
@@ -53,6 +54,62 @@ namespace TechSupport.DAL
             return openIncidentList;
            
         }
-        
+
+        public void AddIncident(DBIncident incident)
+        {
+            SqlConnection connection = TechSupportDBConnection.GetConnection();
+            string insertStatement =
+                @"INSERT Incident (CustomerID, ProductCode, DateOpened, Title, `Description`) 
+                    VALUES (@CustomerID, @ProductCode, @DateOpened, @Title, @Description)";
+
+            SqlCommand insertCommand = new SqlCommand(insertStatement, connection);
+            if (incident.CustomerID <= 0)
+            {
+                insertCommand.Parameters.AddWithValue("@CustomerID", DBNull.Value);
+            }
+            else
+            {
+                insertCommand.Parameters.AddWithValue("@CustomerID", incident.CustomerID);
+            }
+
+            if (string.IsNullOrEmpty(incident.ProductCode))
+            {
+                insertCommand.Parameters.AddWithValue("@ProductCode", DBNull.Value);
+            }
+            else
+            {
+                insertCommand.Parameters.AddWithValue("@ProductCode", incident.ProductCode);
+            }
+
+            insertCommand.Parameters.AddWithValue("@DateOpened", DateTime.Now);
+
+            if (string.IsNullOrEmpty(incident.Title))
+            {
+                insertCommand.Parameters.AddWithValue("@Title", DBNull.Value);
+            }
+            else
+            {
+                insertCommand.Parameters.AddWithValue("@Title", incident.Title);
+            }
+
+            if (string.IsNullOrEmpty(incident.Description))
+            {
+                insertCommand.Parameters.AddWithValue("@Description", DBNull.Value);
+            }
+            else
+            {
+                insertCommand.Parameters.AddWithValue("@Description", incident.Description);
+            }            
+
+            using (connection)
+            {
+                connection.Open();
+                using (insertCommand)
+                {
+                    insertCommand.ExecuteNonQuery();                    
+                }
+            }
+        }
+
     }
 }

@@ -66,7 +66,13 @@ namespace TechSupport.controller
             return this.incidentDBSource.GetOpenIncidents();
         }
 
-
+        public void AddIncident(DBIncident incident)
+        {
+            if (incident != null)
+            {
+                this.incidentDBSource.AddIncident(incident);
+            }            
+        }
 
 
     }

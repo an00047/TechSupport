@@ -21,11 +21,22 @@ namespace TechSupport.UserControls
         private void AddButton_Click(object sender, EventArgs e)
         {
             try
-            {
+            {                
                 var description = this.descriptionTextBox.Text;
-                var customerID = int.Parse(this.titleTextBox.Text);
+                var customerID = int.Parse(this.customerComboBox.Text);
+                var title = this.titleTextBox.Text;
+                var productCode = this.productComboBox.Text;
+
+                var incident = new DBIncident
+                {
+                    Description = description,
+                    CustomerID = customerID,
+                    Title = title,
+                    ProductCode = productCode
+                };
+
+                this.incidentController.AddIncident(incident);
                 this.SuccessLabel.Text = "Incident was added!";
-                //this.incidentController.Add(new Incident(title, description, customerID));
             }
             catch (Exception ex)
             {
