@@ -31,7 +31,8 @@ namespace TechSupport.view
 
         private void LoadIncidents(object sender, EventArgs e)
         {
-            this.allIncidentsUserControl1.RefreshSelection(); 
+            this.allIncidentsUserControl1.RefreshSelection();
+            this.displayOpenIncidentsUserControl1.UpdateOpenIncidentDisplay();
         }
 
         private void LogoutLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

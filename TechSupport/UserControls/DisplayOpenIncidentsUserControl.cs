@@ -22,12 +22,7 @@ namespace TechSupport.UserControls
             this.incidentController = new IncidentController();
         }
 
-        /// <summary>
-        /// Adds the incidents to the listview 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DisplayOpenIncidentsUserControl_Load(object sender, EventArgs e)
+        public void UpdateOpenIncidentDisplay()
         {
             List<DBIncident> openIncidentsList;
             try
@@ -51,14 +46,26 @@ namespace TechSupport.UserControls
                     MessageBox.Show("There are no open incidents at this time",
                     "No Opem Incidents", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("An error has occured" + ex.ToString(),
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+
+        /// <summary>
+        /// Adds the incidents to the listview 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DisplayOpenIncidentsUserControl_Load(object sender, EventArgs e)
+        {
+            this.UpdateOpenIncidentDisplay();
 
         }
+
     }
 }

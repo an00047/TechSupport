@@ -22,11 +22,10 @@ namespace TechSupport.UserControls
         {
             try
             {
-                var title = this.incidentTitleTextBox.Text;
-                var description = this.incidentDescriptionTextBox.Text;
-                var customerID = int.Parse(this.customerIDTextBox.Text);
+                var description = this.descriptionTextBox.Text;
+                var customerID = int.Parse(this.titleTextBox.Text);
                 this.SuccessLabel.Text = "Incident was added!";
-                this.incidentController.Add(new Incident(title, description, customerID));
+                //this.incidentController.Add(new Incident(title, description, customerID));
             }
             catch (Exception ex)
             {
@@ -37,12 +36,12 @@ namespace TechSupport.UserControls
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
-            this.incidentTitleTextBox.Text = "";
-            this.incidentDescriptionTextBox.Text = "";
-            this.customerIDTextBox.Text = "";
+            this.descriptionTextBox.Text = "";
+            this.titleTextBox.Text = "";
             this.SuccessLabel.Text = "";
             
         }
 
+        
     }
 }
