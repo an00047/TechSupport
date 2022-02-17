@@ -53,6 +53,15 @@ namespace TechSupport.UserControls
             
         }
 
-        
+        private void AddIncidentUserControl_Load(object sender, EventArgs e)
+        {
+            this.customerComboBox.DataSource = this.incidentController.GetCustomers();
+            this.customerComboBox.DisplayMember = "Name";
+            this.customerComboBox.ValueMember = "CustomerID";
+
+            this.productComboBox.DataSource = this.incidentController.GetProducts();
+            this.productComboBox.DisplayMember = "Name";
+            this.productComboBox.ValueMember = "ProductCode";
+        }
     }
 }

@@ -35,12 +35,12 @@ namespace TechSupport.UserControls
             this.descriptionLabel = new System.Windows.Forms.Label();
             this.titleLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.productLabel = new System.Windows.Forms.Label();
             this.ClearButton = new System.Windows.Forms.Button();
             this.AddButton = new System.Windows.Forms.Button();
-            this.SuccessLabel = new System.Windows.Forms.Label();
-            this.customerComboBox = new System.Windows.Forms.ComboBox();
             this.productComboBox = new System.Windows.Forms.ComboBox();
-            this.productLabel = new System.Windows.Forms.Label();
+            this.customerComboBox = new System.Windows.Forms.ComboBox();
+            this.SuccessLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -125,6 +125,17 @@ namespace TechSupport.UserControls
             this.tableLayoutPanel1.Size = new System.Drawing.Size(579, 328);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
+            // productLabel
+            // 
+            this.productLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.productLabel.AutoSize = true;
+            this.productLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.productLabel.Location = new System.Drawing.Point(62, 66);
+            this.productLabel.Name = "productLabel";
+            this.productLabel.Size = new System.Drawing.Size(79, 25);
+            this.productLabel.TabIndex = 8;
+            this.productLabel.Text = "Product";
+            // 
             // ClearButton
             // 
             this.ClearButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -149,6 +160,26 @@ namespace TechSupport.UserControls
             this.AddButton.UseVisualStyleBackColor = true;
             this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
+            // productComboBox
+            // 
+            this.productComboBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.productComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.productComboBox.FormattingEnabled = true;
+            this.productComboBox.Location = new System.Drawing.Point(187, 64);
+            this.productComboBox.Name = "productComboBox";
+            this.productComboBox.Size = new System.Drawing.Size(348, 28);
+            this.productComboBox.TabIndex = 7;
+            // 
+            // customerComboBox
+            // 
+            this.customerComboBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.customerComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.customerComboBox.FormattingEnabled = true;
+            this.customerComboBox.Location = new System.Drawing.Point(191, 12);
+            this.customerComboBox.Name = "customerComboBox";
+            this.customerComboBox.Size = new System.Drawing.Size(341, 28);
+            this.customerComboBox.TabIndex = 6;
+            // 
             // SuccessLabel
             // 
             this.SuccessLabel.AutoSize = true;
@@ -159,37 +190,6 @@ namespace TechSupport.UserControls
             this.SuccessLabel.Size = new System.Drawing.Size(0, 25);
             this.SuccessLabel.TabIndex = 3;
             // 
-            // customerComboBox
-            // 
-            this.customerComboBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.customerComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.customerComboBox.FormattingEnabled = true;
-            this.customerComboBox.Location = new System.Drawing.Point(191, 15);
-            this.customerComboBox.Name = "customerComboBox";
-            this.customerComboBox.Size = new System.Drawing.Size(341, 28);
-            this.customerComboBox.TabIndex = 6;
-            // 
-            // productComboBox
-            // 
-            this.productComboBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.productComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.productComboBox.FormattingEnabled = true;
-            this.productComboBox.Location = new System.Drawing.Point(187, 68);
-            this.productComboBox.Name = "productComboBox";
-            this.productComboBox.Size = new System.Drawing.Size(348, 28);
-            this.productComboBox.TabIndex = 7;
-            // 
-            // productLabel
-            // 
-            this.productLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.productLabel.AutoSize = true;
-            this.productLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.productLabel.Location = new System.Drawing.Point(62, 66);
-            this.productLabel.Name = "productLabel";
-            this.productLabel.Size = new System.Drawing.Size(79, 25);
-            this.productLabel.TabIndex = 8;
-            this.productLabel.Text = "Product";
-            // 
             // AddIncidentUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -198,6 +198,7 @@ namespace TechSupport.UserControls
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "AddIncidentUserControl";
             this.Size = new System.Drawing.Size(641, 375);
+            this.Load += new System.EventHandler(this.AddIncidentUserControl_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

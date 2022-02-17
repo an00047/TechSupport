@@ -74,6 +74,14 @@ namespace TechSupport.controller
             }            
         }
 
+        public List<DBCustomer> GetCustomers()
+        {
+            return this.incidentDBSource.GetCustomers();
+        }
 
+        public List<DBProduct> GetProducts()
+        {
+            return this.incidentDBSource.GetProducts();
+        }
     }
 }
