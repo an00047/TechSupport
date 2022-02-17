@@ -12,11 +12,15 @@ namespace TechSupport.controller
     {
         private IncidentDAL incidentSource;
         private IncidentDBDAL incidentDBSource;
+        private CustomerDBDAL customerDBSource;
+        private ProductDBDAL productDBSource;
         
         public IncidentController()
         {
             this.incidentSource = new IncidentDAL();
             this.incidentDBSource = new IncidentDBDAL();
+            this.customerDBSource = new CustomerDBDAL();
+            this.productDBSource = new ProductDBDAL();
         }
 
         /// <summary>
@@ -76,12 +80,12 @@ namespace TechSupport.controller
 
         public List<DBCustomer> GetCustomers()
         {
-            return this.incidentDBSource.GetCustomers();
+            return this.customerDBSource.GetCustomers();
         }
 
         public List<DBProduct> GetProducts()
         {
-            return this.incidentDBSource.GetProducts();
+            return this.productDBSource.GetProducts();
         }
     }
 }

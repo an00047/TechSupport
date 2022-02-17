@@ -53,8 +53,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="controller\IncidentController.cs" />
+    <Compile Include="DAL\CustomerDBDAL.cs" />
     <Compile Include="DAL\IncidentDAL.cs" />
     <Compile Include="DAL\IncidentDBDAL.cs" />
+    <Compile Include="DAL\ProductDBDAL.cs" />
     <Compile Include="DAL\TechSupportDBConnection.cs" />
     <Compile Include="model\DBCustomer.cs" />
     <Compile Include="model\DBIncident.cs" />
