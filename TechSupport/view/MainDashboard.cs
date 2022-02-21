@@ -40,6 +40,7 @@ namespace TechSupport.view
             this.Hide();
             activeLoginForm.Show();
         }
+
     }
 }
 

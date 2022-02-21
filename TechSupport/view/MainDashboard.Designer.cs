@@ -61,6 +61,7 @@ namespace TechSupport.view
             this.MainDashboardTabControl.Size = new System.Drawing.Size(816, 572);
             this.MainDashboardTabControl.TabIndex = 0;
             this.MainDashboardTabControl.SelectedIndexChanged += new System.EventHandler(this.LoadIncidents);
+            this.MainDashboardTabControl.TabIndexChanged += new System.EventHandler(this.LoadIncidents);
             // 
             // AddIncidentTabPage
             // 
@@ -106,7 +107,7 @@ namespace TechSupport.view
             this.SearchIncidentTabPage.Location = new System.Drawing.Point(4, 29);
             this.SearchIncidentTabPage.Name = "SearchIncidentTabPage";
             this.SearchIncidentTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.SearchIncidentTabPage.Size = new System.Drawing.Size(793, 539);
+            this.SearchIncidentTabPage.Size = new System.Drawing.Size(808, 539);
             this.SearchIncidentTabPage.TabIndex = 2;
             this.SearchIncidentTabPage.Text = "Search Incident";
             this.SearchIncidentTabPage.UseVisualStyleBackColor = true;

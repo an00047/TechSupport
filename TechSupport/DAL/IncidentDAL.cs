@@ -44,23 +44,11 @@ namespace TechSupport.DAL {
         /// <returns>The list of incidents whose customerID matches the parameter</returns>
         public List<Incident> GetIncidentsByCustomerID(int customerID)
         {
-            List<Incident> customerIncidents = new List<Incident>
-            {
-
-            };
             if (customerID < 0)
             {
                 throw new ArgumentNullException("CustomerID cannot be negative");
             }
-            
-            foreach (Incident current in incidents)
-            {
-                if (current.CustomerID == customerID)
-                {
-                    customerIncidents.Add(current);
-                }
-            }
-            return customerIncidents;
+            return incidents.FindAll(e => e.CustomerID == customerID);
         }
 
     }

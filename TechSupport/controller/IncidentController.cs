@@ -14,6 +14,7 @@ namespace TechSupport.controller
         private IncidentDBDAL incidentDBSource;
         private CustomerDBDAL customerDBSource;
         private ProductDBDAL productDBSource;
+        private RegistrationDBDAL registrationDBSource;
         
         public IncidentController()
         {
@@ -21,6 +22,7 @@ namespace TechSupport.controller
             this.incidentDBSource = new IncidentDBDAL();
             this.customerDBSource = new CustomerDBDAL();
             this.productDBSource = new ProductDBDAL();
+            this.registrationDBSource = new RegistrationDBDAL();
         }
 
         /// <summary>
@@ -86,6 +88,11 @@ namespace TechSupport.controller
         public List<DBProduct> GetProducts()
         {
             return this.productDBSource.GetProducts();
+        }
+
+        public bool IsRegistered(int customerID, string productCode)
+        {
+            return this.registrationDBSource.IsRegistered(customerID, productCode);
         }
     }
 }

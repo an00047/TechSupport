@@ -163,6 +163,7 @@ namespace TechSupport.UserControls
             // productComboBox
             // 
             this.productComboBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.productComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.productComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.productComboBox.FormattingEnabled = true;
             this.productComboBox.Location = new System.Drawing.Point(187, 64);
@@ -173,6 +174,7 @@ namespace TechSupport.UserControls
             // customerComboBox
             // 
             this.customerComboBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.customerComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.customerComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.customerComboBox.FormattingEnabled = true;
             this.customerComboBox.Location = new System.Drawing.Point(191, 12);

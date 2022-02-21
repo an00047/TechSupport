@@ -23,24 +23,34 @@ namespace TechSupport.UserControls
             try
             {                
                 var description = this.descriptionTextBox.Text;
-                var customerID = int.Parse(this.customerComboBox.Text);
+                var customerID = this.customerComboBox.SelectedValue;
                 var title = this.titleTextBox.Text;
-                var productCode = this.productComboBox.Text;
+                var productCode = this.productComboBox.SelectedValue;
 
                 var incident = new DBIncident
                 {
                     Description = description,
-                    CustomerID = customerID,
+                    CustomerID = (int)customerID,
                     Title = title,
-                    ProductCode = productCode
+                    ProductCode = (string)productCode
                 };
 
-                this.incidentController.AddIncident(incident);
-                this.SuccessLabel.Text = "Incident was added!";
+                if (incidentController.IsRegistered((int)customerID, (string)productCode))
+                {
+                    this.incidentController.AddIncident(incident);
+                    this.SuccessLabel.Text = "Incident was added!";
+                } 
+                else
+                {
+                    MessageBox.Show("This customer does not have a registration for this item",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                
             }
             catch (Exception ex)
             {
-                MessageBox.Show("All three items must be entered. Customer ID should be a number \n" + ex.Message,
+                MessageBox.Show("Title and description cannot be empty. \n" + ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -50,6 +60,8 @@ namespace TechSupport.UserControls
             this.descriptionTextBox.Text = "";
             this.titleTextBox.Text = "";
             this.SuccessLabel.Text = "";
+            this.customerComboBox.SelectedIndex = 0;
+            this.productComboBox.SelectedIndex = 0;
             
         }
 
@@ -63,5 +75,6 @@ namespace TechSupport.UserControls
             this.productComboBox.DisplayMember = "Name";
             this.productComboBox.ValueMember = "ProductCode";
         }
+
     }
 }
