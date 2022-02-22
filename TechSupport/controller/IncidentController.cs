@@ -94,5 +94,10 @@ namespace TechSupport.controller
         {
             return this.registrationDBSource.IsRegistered(customerID, productCode);
         }
+
+        public DBIncident GetIncidentByID(int incidentID)
+        {
+            return this.incidentDBSource.GetIncidentByID(incidentID);
+        }
     }
 }

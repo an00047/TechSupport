@@ -105,7 +105,6 @@ namespace TechSupport.UserControls
             this.descriptionTextBox.Location = new System.Drawing.Point(151, 243);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
-            this.descriptionTextBox.ReadOnly = true;
             this.descriptionTextBox.Size = new System.Drawing.Size(300, 82);
             this.descriptionTextBox.TabIndex = 12;
             // 
@@ -115,7 +114,6 @@ namespace TechSupport.UserControls
             this.titleTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.titleTextBox.Location = new System.Drawing.Point(151, 144);
             this.titleTextBox.Name = "titleTextBox";
-            this.titleTextBox.ReadOnly = true;
             this.titleTextBox.Size = new System.Drawing.Size(300, 26);
             this.titleTextBox.TabIndex = 10;
             // 
@@ -125,7 +123,6 @@ namespace TechSupport.UserControls
             this.productTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.productTextBox.Location = new System.Drawing.Point(151, 52);
             this.productTextBox.Name = "productTextBox";
-            this.productTextBox.ReadOnly = true;
             this.productTextBox.Size = new System.Drawing.Size(300, 26);
             this.productTextBox.TabIndex = 9;
             // 
@@ -230,7 +227,6 @@ namespace TechSupport.UserControls
             this.customerTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.customerTextBox.Location = new System.Drawing.Point(151, 8);
             this.customerTextBox.Name = "customerTextBox";
-            this.customerTextBox.ReadOnly = true;
             this.customerTextBox.Size = new System.Drawing.Size(300, 26);
             this.customerTextBox.TabIndex = 8;
             // 
@@ -240,7 +236,6 @@ namespace TechSupport.UserControls
             this.dateOpenedTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.dateOpenedTextBox.Location = new System.Drawing.Point(151, 193);
             this.dateOpenedTextBox.Name = "dateOpenedTextBox";
-            this.dateOpenedTextBox.ReadOnly = true;
             this.dateOpenedTextBox.Size = new System.Drawing.Size(143, 26);
             this.dateOpenedTextBox.TabIndex = 11;
             // 
@@ -260,20 +255,21 @@ namespace TechSupport.UserControls
             // 
             this.incidentIDTextbox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.incidentIDTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.incidentIDTextbox.Location = new System.Drawing.Point(151, 7);
+            this.incidentIDTextbox.Location = new System.Drawing.Point(150, 7);
             this.incidentIDTextbox.Name = "incidentIDTextbox";
-            this.incidentIDTextbox.Size = new System.Drawing.Size(138, 26);
+            this.incidentIDTextbox.Size = new System.Drawing.Size(137, 26);
             this.incidentIDTextbox.TabIndex = 12;
             // 
             // getIncidentButton
             // 
             this.getIncidentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.getIncidentButton.Location = new System.Drawing.Point(295, 3);
+            this.getIncidentButton.Location = new System.Drawing.Point(293, 3);
             this.getIncidentButton.Name = "getIncidentButton";
             this.getIncidentButton.Size = new System.Drawing.Size(128, 35);
             this.getIncidentButton.TabIndex = 13;
             this.getIncidentButton.Text = "Get";
             this.getIncidentButton.UseVisualStyleBackColor = true;
+            this.getIncidentButton.Click += new System.EventHandler(this.GetIncidentButton_Click);
             // 
             // updateButton
             // 
@@ -310,7 +306,7 @@ namespace TechSupport.UserControls
             this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.68493F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.31507F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 161F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 163F));
             this.tableLayoutPanel2.Controls.Add(this.incidentIDLabel, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.incidentIDTextbox, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.getIncidentButton, 2, 0);

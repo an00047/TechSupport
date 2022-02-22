@@ -112,5 +112,41 @@ namespace TechSupport.DAL
             }
         }
 
+        public DBIncident GetIncidentByID(int incidentID)
+        {
+            DBIncident incident = new DBIncident();
+            SqlConnection connection = TechSupportDBConnection.GetConnection();
+            string selectStatement =
+                @"SELECT Products.ProductCode, FORMAT(Incidents.DateOpened, 'MM-dd-yyyy') as date, 
+                   Customers.Name, Incidents.Title, Incidents.Description, Technicians.TechID
+                FROM Incidents 
+                JOIN Products ON Incidents.ProductCode = Products.ProductCode 
+                JOIN Customers ON Incidents.CustomerID = Customers.CustomerID 
+                WHERE Incidents.IncidentID = @IncidentID";
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@IncidentID", incidentID);
+            SqlDataReader reader = null;
+            using (connection)
+            {
+                connection.Open();
+                using (selectCommand)
+                {
+                    using (reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            incident.ProductCode = reader["ProductCode"].ToString();
+                            incident.Technician = reader["TechID"].ToString();
+                            incident.DateOpened = reader["date"].ToString();
+                            incident.Customer = reader["Name"].ToString();
+                            incident.Title = reader["Title"].ToString();
+                            incident.Description = reader["Description"].ToString();
+                        }
+                    }
+                }
+            }
+            return incident;
+        }
+
     }
 }

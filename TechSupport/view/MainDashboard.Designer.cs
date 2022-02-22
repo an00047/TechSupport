@@ -162,12 +162,9 @@ namespace TechSupport.view
 
         private System.Windows.Forms.TabControl MainDashboardTabControl;
         private System.Windows.Forms.TabPage AddIncidentTabPage;
-        private UserControls.AddIncidentUserControl addIncidentUserControl1;
-        private UserControls.AddIncidentUserControl addIncidentUserControl2;
         private System.Windows.Forms.LinkLabel logoutLabel;
         private System.Windows.Forms.Label usernameLabel;
         private System.Windows.Forms.TabPage DisplayOpenIncidentsTabPage;
-        private UserControls.DisplayOpenIncidentsUserControl displayOpenIncidentsUserControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private UserControls.AddIncidentUserControl addIncidentUserControl3;
         private UserControls.DisplayOpenIncidentsUserControl displayOpenIncidentsUserControl;
