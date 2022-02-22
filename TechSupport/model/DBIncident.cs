@@ -8,11 +8,12 @@ namespace TechSupport.model
     public class DBIncident
     {
 
-        public String ProductCode { get; set; }
-        public String DateOpened { get; set; }
-        public String Customer { get; set; }
-        public String Technician { get; set; }
-        public String Title { get; set; }
+        public string ProductCode { get; set; }
+        public string DateOpened { get; set; }
+        public string Customer { get; set; }
+        public string Technician { get; set; }
+        public int TechID { get; set; }
+        public string Title { get; set; }
         public string Description { get; set; }
         public int CustomerID { get; set; }
     }

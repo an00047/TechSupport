@@ -105,6 +105,7 @@ namespace TechSupport.UserControls
             this.descriptionTextBox.Location = new System.Drawing.Point(151, 243);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
+            this.descriptionTextBox.ReadOnly = true;
             this.descriptionTextBox.Size = new System.Drawing.Size(300, 82);
             this.descriptionTextBox.TabIndex = 12;
             // 
@@ -114,6 +115,7 @@ namespace TechSupport.UserControls
             this.titleTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.titleTextBox.Location = new System.Drawing.Point(151, 144);
             this.titleTextBox.Name = "titleTextBox";
+            this.titleTextBox.ReadOnly = true;
             this.titleTextBox.Size = new System.Drawing.Size(300, 26);
             this.titleTextBox.TabIndex = 10;
             // 
@@ -123,6 +125,7 @@ namespace TechSupport.UserControls
             this.productTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.productTextBox.Location = new System.Drawing.Point(151, 52);
             this.productTextBox.Name = "productTextBox";
+            this.productTextBox.ReadOnly = true;
             this.productTextBox.Size = new System.Drawing.Size(300, 26);
             this.productTextBox.TabIndex = 9;
             // 
@@ -227,6 +230,7 @@ namespace TechSupport.UserControls
             this.customerTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.customerTextBox.Location = new System.Drawing.Point(151, 8);
             this.customerTextBox.Name = "customerTextBox";
+            this.customerTextBox.ReadOnly = true;
             this.customerTextBox.Size = new System.Drawing.Size(300, 26);
             this.customerTextBox.TabIndex = 8;
             // 
@@ -236,6 +240,7 @@ namespace TechSupport.UserControls
             this.dateOpenedTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.dateOpenedTextBox.Location = new System.Drawing.Point(151, 193);
             this.dateOpenedTextBox.Name = "dateOpenedTextBox";
+            this.dateOpenedTextBox.ReadOnly = true;
             this.dateOpenedTextBox.Size = new System.Drawing.Size(143, 26);
             this.dateOpenedTextBox.TabIndex = 11;
             // 

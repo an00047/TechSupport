@@ -118,7 +118,7 @@ namespace TechSupport.DAL
             SqlConnection connection = TechSupportDBConnection.GetConnection();
             string selectStatement =
                 @"SELECT Products.ProductCode, FORMAT(Incidents.DateOpened, 'MM-dd-yyyy') as date, 
-                   Customers.Name, Incidents.Title, Incidents.Description, Technicians.TechID
+                   Customers.Name, Incidents.Title, Incidents.Description, Incidents.TechID
                 FROM Incidents 
                 JOIN Products ON Incidents.ProductCode = Products.ProductCode 
                 JOIN Customers ON Incidents.CustomerID = Customers.CustomerID 
@@ -136,7 +136,8 @@ namespace TechSupport.DAL
                         while (reader.Read())
                         {
                             incident.ProductCode = reader["ProductCode"].ToString();
-                            incident.Technician = reader["TechID"].ToString();
+                            
+                            //incident.TechID = Convert.ToInt32(reader["TechID"]);
                             incident.DateOpened = reader["date"].ToString();
                             incident.Customer = reader["Name"].ToString();
                             incident.Title = reader["Title"].ToString();

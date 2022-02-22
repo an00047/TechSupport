@@ -58,11 +58,13 @@
     <Compile Include="DAL\IncidentDBDAL.cs" />
     <Compile Include="DAL\ProductDBDAL.cs" />
     <Compile Include="DAL\RegistrationDBDAL.cs" />
+    <Compile Include="DAL\TechnicianDBDAL.cs" />
     <Compile Include="DAL\TechSupportDBConnection.cs" />
     <Compile Include="model\DBCustomer.cs" />
     <Compile Include="model\DBIncident.cs" />
     <Compile Include="model\DBProduct.cs" />
     <Compile Include="model\DBRegistration.cs" />
+    <Compile Include="model\DBTechnician.cs" />
     <Compile Include="UserControls\AddIncidentUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

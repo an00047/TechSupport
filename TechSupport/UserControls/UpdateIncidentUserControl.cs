@@ -26,6 +26,15 @@ namespace TechSupport.UserControls
                 this.dateOpenedTextBox.Text = currentIncident.DateOpened;
                 this.titleTextBox.Text = currentIncident.Title;
                 this.descriptionTextBox.Text = currentIncident.Description;
+                this.technicianComboBox.DataSource = this.incidentController.GetTechnicians();
+                this.technicianComboBox.DisplayMember = "Name";
+                this.technicianComboBox.ValueMember = "TechID";
+                //if (currentIncident.Technician == null || currentIncident.Technician == "")
+                //{
+                //    this.technicianComboBox.Items.Add("-Unassigned-");
+                //    this.technicianComboBox.DataSource = this.incidentController.GetTechnicians();
+                //    this.technicianComboBox.SelectedIndex = 0;
+                //} 
             }
             catch (Exception ex)
             {

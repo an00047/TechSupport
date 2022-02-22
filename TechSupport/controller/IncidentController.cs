@@ -15,6 +15,7 @@ namespace TechSupport.controller
         private CustomerDBDAL customerDBSource;
         private ProductDBDAL productDBSource;
         private RegistrationDBDAL registrationDBSource;
+        private TechnicianDBDAL technicianDBSource;
         
         public IncidentController()
         {
@@ -23,6 +24,7 @@ namespace TechSupport.controller
             this.customerDBSource = new CustomerDBDAL();
             this.productDBSource = new ProductDBDAL();
             this.registrationDBSource = new RegistrationDBDAL();
+            technicianDBSource = new TechnicianDBDAL();
         }
 
         /// <summary>
@@ -98,6 +100,11 @@ namespace TechSupport.controller
         public DBIncident GetIncidentByID(int incidentID)
         {
             return this.incidentDBSource.GetIncidentByID(incidentID);
+        }
+
+        public List<DBTechnician> GetTechnicians()
+        {
+            return this.technicianDBSource.GetTechnicians();
         }
     }
 }
