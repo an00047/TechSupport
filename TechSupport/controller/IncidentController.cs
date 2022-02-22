@@ -106,5 +106,10 @@ namespace TechSupport.controller
         {
             return this.technicianDBSource.GetTechnicians();
         }
+
+        public void UpdateIncident(int incidentID, string description, int techID)
+        {
+            this.incidentDBSource.UpdateIncident(incidentID, description, techID);
+        }
     }
 }

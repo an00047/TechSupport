@@ -50,13 +50,20 @@ namespace TechSupport.view
 
         private void AddIncidentButton_Click(object sender, EventArgs e)
         {
-            Form addIncidentDialog = new AddIncidentDialog();
-            DialogResult result = addIncidentDialog.ShowDialog();
-
-            if (result == DialogResult.OK)
+            using (Form addIncidentDialog = new AddIncidentDialog())
             {
-                this.RefreshDataGrid();
-            };
+
+                DialogResult result = addIncidentDialog.ShowDialog();
+
+                if (result == DialogResult.OK)
+
+                {
+
+                    this.RefreshDataGrid();
+
+                }
+
+            }
         }
 
         private void SearchIncidentButton_Click(object sender, EventArgs e)

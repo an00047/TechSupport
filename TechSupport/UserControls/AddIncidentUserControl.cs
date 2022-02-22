@@ -50,7 +50,7 @@ namespace TechSupport.UserControls
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Title and description cannot be empty. \n" + ex.Message,
+                MessageBox.Show("Title and description cannot be empty.",
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

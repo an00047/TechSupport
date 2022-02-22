@@ -149,5 +149,26 @@ namespace TechSupport.DAL
             return incident;
         }
 
+        public void UpdateIncident(int incidentID, string description, int techID)
+        {
+            SqlConnection connection = TechSupportDBConnection.GetConnection();
+            string updateStatement =
+                @"UPDATE Incidents SET Description = @description, TechID = @techID
+                    WHERE IncidentID = @incidentID";
+            SqlCommand updateCommand = new SqlCommand(updateStatement, connection);
+            updateCommand.Parameters.AddWithValue("@incidentID", incidentID);
+            updateCommand.Parameters.AddWithValue("@techID", techID);
+            updateCommand.Parameters.AddWithValue("@description", description);
+
+            using (connection)
+            {
+                connection.Open();
+                using (updateCommand)
+                {
+                    updateCommand.ExecuteNonQuery();
+                }
+            }
+        }
+
     }
 }

@@ -26,9 +26,14 @@ namespace TechSupport.UserControls
                 this.dateOpenedTextBox.Text = currentIncident.DateOpened;
                 this.titleTextBox.Text = currentIncident.Title;
                 this.descriptionTextBox.Text = currentIncident.Description;
+                //this.technicianComboBox.Items.Add("-Unassigned-");
                 this.technicianComboBox.DataSource = this.incidentController.GetTechnicians();
                 this.technicianComboBox.DisplayMember = "Name";
                 this.technicianComboBox.ValueMember = "TechID";
+                this.updateButton.Enabled = true;
+                this.closeButton.Enabled = true;
+                this.textToAddTextbox.Enabled = true;
+
                 //if (currentIncident.Technician == null || currentIncident.Technician == "")
                 //{
                 //    this.technicianComboBox.Items.Add("-Unassigned-");
@@ -38,8 +43,92 @@ namespace TechSupport.UserControls
             }
             catch (Exception ex)
             {
-                var msg = ex.Message;
+                MessageBox.Show("Incident ID should be a valid integer. " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void UpdateIncidentUserControl_Load(object sender, EventArgs e)
+        {
+            this.updateButton.Enabled = false;
+            this.closeButton.Enabled = false;
+            this.textToAddTextbox.Enabled = false;
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            this.ClearText();
+
+            this.updateButton.Enabled = false;
+            this.closeButton.Enabled = false;
+            this.textToAddTextbox.Enabled = false;
+            
+        }
+
+        private void UpdateButton_Click(object sender, EventArgs e)
+        { 
+            try
+            {
+                int incidentID = int.Parse(this.incidentIDTextbox.Text);
+                int techID = (int)this.technicianComboBox.SelectedValue;
+                string description = this.descriptionTextBox.Text;
+                string textToAdd = this.textToAddTextbox.Text;
+                string dateUpdated = System.DateTime.Now.ToShortDateString();
+                string updatedDescription = description + "\r\n" + dateUpdated + " " + textToAdd;
+                DialogResult lengthWarning;
+                if (description.Length >= 200)
+                {
+                    lengthWarning = MessageBox.Show("Description length is too long. Additional text will not be added. \n Continue?",
+                   "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                    if(lengthWarning==DialogResult.OK)
+                    {
+                        this.incidentController.UpdateIncident(incidentID, "" , techID);
+                    }
+                }
+                if (updatedDescription.Length >= 200)
+                {
+                    lengthWarning = MessageBox.Show("Description length is too long. Any characters over 200 will be truncated. \n Continue? ",
+                   "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                    if (lengthWarning==DialogResult.OK)
+                    {
+
+                        this.incidentController.UpdateIncident(incidentID, updatedDescription.Substring(0, 200), techID);
+                        
+                    }
+                    
+                } else
+                {
+                    this.incidentController.UpdateIncident(incidentID, updatedDescription, techID);
+                    this.descriptionTextBox.Text = updatedDescription;
+                    this.textToAddTextbox.Text = "";
+                }
+                
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Invalid data! Check incident ID, technician, text to add. " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ClearText()
+        {
+            this.technicianComboBox.DataSource = null;
+            this.incidentIDTextbox.Text = "";
+            this.customerTextBox.Text = "";
+            this.productTextBox.Text = "";
+            this.dateOpenedTextBox.Text = "";
+            this.titleTextBox.Text = "";
+            this.descriptionTextBox.Text = "";
+            this.updateButton.Enabled = false;
+            this.closeButton.Enabled = false;
+            this.textToAddTextbox.Enabled = false;
+        }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

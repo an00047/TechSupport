@@ -249,7 +249,7 @@ namespace TechSupport.UserControls
             this.incidentIDLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.incidentIDLabel.AutoSize = true;
             this.incidentIDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.incidentIDLabel.Location = new System.Drawing.Point(30, 10);
+            this.incidentIDLabel.Location = new System.Drawing.Point(29, 10);
             this.incidentIDLabel.Name = "incidentIDLabel";
             this.incidentIDLabel.Size = new System.Drawing.Size(87, 20);
             this.incidentIDLabel.TabIndex = 1;
@@ -260,15 +260,15 @@ namespace TechSupport.UserControls
             // 
             this.incidentIDTextbox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.incidentIDTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.incidentIDTextbox.Location = new System.Drawing.Point(150, 7);
+            this.incidentIDTextbox.Location = new System.Drawing.Point(149, 7);
             this.incidentIDTextbox.Name = "incidentIDTextbox";
-            this.incidentIDTextbox.Size = new System.Drawing.Size(137, 26);
+            this.incidentIDTextbox.Size = new System.Drawing.Size(136, 26);
             this.incidentIDTextbox.TabIndex = 12;
             // 
             // getIncidentButton
             // 
             this.getIncidentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.getIncidentButton.Location = new System.Drawing.Point(293, 3);
+            this.getIncidentButton.Location = new System.Drawing.Point(291, 3);
             this.getIncidentButton.Name = "getIncidentButton";
             this.getIncidentButton.Size = new System.Drawing.Size(128, 35);
             this.getIncidentButton.TabIndex = 13;
@@ -285,6 +285,7 @@ namespace TechSupport.UserControls
             this.updateButton.TabIndex = 14;
             this.updateButton.Text = "Update";
             this.updateButton.UseVisualStyleBackColor = true;
+            this.updateButton.Click += new System.EventHandler(this.UpdateButton_Click);
             // 
             // closeButton
             // 
@@ -295,6 +296,7 @@ namespace TechSupport.UserControls
             this.closeButton.TabIndex = 15;
             this.closeButton.Text = "Close";
             this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // clearButton
             // 
@@ -305,13 +307,14 @@ namespace TechSupport.UserControls
             this.clearButton.TabIndex = 16;
             this.clearButton.Text = "Clear";
             this.clearButton.UseVisualStyleBackColor = true;
+            this.clearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.68493F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.31507F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 163F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 165F));
             this.tableLayoutPanel2.Controls.Add(this.incidentIDLabel, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.incidentIDTextbox, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.getIncidentButton, 2, 0);
@@ -333,6 +336,7 @@ namespace TechSupport.UserControls
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "UpdateIncidentUserControl";
             this.Size = new System.Drawing.Size(520, 627);
+            this.Load += new System.EventHandler(this.UpdateIncidentUserControl_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
