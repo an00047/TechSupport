@@ -74,6 +74,10 @@ namespace TechSupport.controller
             return this.incidentDBSource.GetOpenIncidents();
         }
 
+        /// <summary>
+        /// Adds the incident.
+        /// </summary>
+        /// <param name="incident">The incident.</param>
         public void AddIncident(DBIncident incident)
         {
             if (incident != null)
@@ -82,34 +86,79 @@ namespace TechSupport.controller
             }            
         }
 
+        /// <summary>
+        /// Gets the customers.
+        /// </summary>
+        /// <returns>The list of customers</returns>
         public List<DBCustomer> GetCustomers()
         {
             return this.customerDBSource.GetCustomers();
         }
 
+        /// <summary>
+        /// Gets the products.
+        /// </summary>
+        /// <returns>The list of products</returns>
         public List<DBProduct> GetProducts()
         {
             return this.productDBSource.GetProducts();
         }
 
+        /// <summary>
+        /// Determines whether the specified customer identifier is registered.
+        /// </summary>
+        /// <param name="customerID">The customer identifier.</param>
+        /// <param name="productCode">The product code.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified customer identifier is registered; otherwise, <c>false</c>.
+        /// </returns>
         public bool IsRegistered(int customerID, string productCode)
         {
             return this.registrationDBSource.IsRegistered(customerID, productCode);
         }
 
+        /// <summary>
+        /// Gets the incident by identifier.
+        /// </summary>
+        /// <param name="incidentID">The incident identifier.</param>
+        /// <returns>The list of incidents </returns>
         public DBIncident GetIncidentByID(int incidentID)
         {
+            if (incidentID <= 0)
+            {
+                throw new ArgumentException("Incident ID cannot be negative");
+            }
             return this.incidentDBSource.GetIncidentByID(incidentID);
         }
 
+        /// <summary>
+        /// Gets the technicians.
+        /// </summary>
+        /// <returns></returns>
         public List<DBTechnician> GetTechnicians()
         {
             return this.technicianDBSource.GetTechnicians();
         }
 
+        /// <summary>
+        /// Updates the incident.
+        /// </summary>
+        /// <param name="incidentID">The incident identifier.</param>
+        /// <param name="description">The description.</param>
+        /// <param name="techID">The tech identifier.</param>
         public void UpdateIncident(int incidentID, string description, int techID)
         {
             this.incidentDBSource.UpdateIncident(incidentID, description, techID);
+        }
+
+        /// <summary>
+        /// Closes the incident.
+        /// </summary>
+        /// <param name="incidentID">The incident identifier.</param>
+        /// <param name="currentDateTime">The current date time.</param>
+        public void CloseIncident(int incidentID, DateTime currentDateTime)
+        {
+            this.incidentDBSource.CloseIncident(incidentID, currentDateTime);
         }
     }
 }

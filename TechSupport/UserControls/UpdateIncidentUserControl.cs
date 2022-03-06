@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using TechSupport.controller;
 using TechSupport.model;
@@ -8,46 +9,78 @@ namespace TechSupport.UserControls
     public partial class UpdateIncidentUserControl : UserControl
     {
         private readonly IncidentController incidentController;
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateIncidentUserControl"/> class.
+        /// </summary>
         public UpdateIncidentUserControl()
         {
             InitializeComponent();
             this.incidentController = new IncidentController();
         }
 
+        /// <summary>
+        /// Handles the Click event of the GetIncidentButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <exception cref="ArgumentException">There is no incident with that number</exception>
         private void GetIncidentButton_Click(object sender, EventArgs e)
         {
             try
-            {
-                int incidentID = int.Parse(this.incidentIDTextbox.Text);
-                DBIncident currentIncident = this.incidentController.GetIncidentByID(incidentID);
-                this.customerTextBox.Text = currentIncident.Customer;
-                this.productTextBox.Text = currentIncident.ProductCode;
-                this.dateOpenedTextBox.Text = currentIncident.DateOpened;
-                this.titleTextBox.Text = currentIncident.Title;
-                this.descriptionTextBox.Text = currentIncident.Description;
-                //this.technicianComboBox.Items.Add("-Unassigned-");
-                this.technicianComboBox.DataSource = this.incidentController.GetTechnicians();
-                this.technicianComboBox.DisplayMember = "Name";
-                this.technicianComboBox.ValueMember = "TechID";
-                this.updateButton.Enabled = true;
-                this.closeButton.Enabled = true;
-                this.textToAddTextbox.Enabled = true;
+            {                
+                int result = 0;
+                bool isValidID = int.TryParse(this.incidentIDTextbox.Text, out result);
+                if (isValidID)
+                {
+                    int incidentID = int.Parse(this.incidentIDTextbox.Text);
+                    DBIncident currentIncident = this.incidentController.GetIncidentByID(incidentID);
+                    if (currentIncident == null)
+                    {
+                        throw new ArgumentException("There is no incident with that number");
+                    }
+                    if (currentIncident.DateClosed == null)
+                    {
 
-                //if (currentIncident.Technician == null || currentIncident.Technician == "")
-                //{
-                //    this.technicianComboBox.Items.Add("-Unassigned-");
-                //    this.technicianComboBox.DataSource = this.incidentController.GetTechnicians();
-                //    this.technicianComboBox.SelectedIndex = 0;
-                //} 
+                        this.updateButton.Enabled = true;
+                        this.closeButton.Enabled = true;
+                        this.textToAddTextbox.Enabled = true;
+                    }
+                    this.customerTextBox.Text = currentIncident.Customer;
+                    this.productTextBox.Text = currentIncident.ProductCode;
+                    this.dateOpenedTextBox.Text = currentIncident.DateOpened;
+                    this.titleTextBox.Text = currentIncident.Title;
+                    this.descriptionTextBox.Text = currentIncident.Description;
+                    if (this.technicianComboBox.Items.Count <= 0)
+                    {
+                        List<DBTechnician> dataList = this.incidentController.GetTechnicians();
+                        dataList.Insert(0, new DBTechnician { TechID = 0, Name = "-Unassigned-" });
+                        this.technicianComboBox.DataSource = dataList;
+                        this.technicianComboBox.DisplayMember = "Name";
+                        this.technicianComboBox.ValueMember = "TechID";
+                    }
+                    if (currentIncident.TechID == null)
+                    {
+                        this.technicianComboBox.SelectedIndex = 0;
+                    }
+                    this.technicianComboBox.SelectedValue = currentIncident.TechID == null ? 0 : currentIncident.TechID;
+                }
+                else
+                {
+                    throw new ArgumentException("Incident ID should be a valid integer");
+                }                
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Incident ID should be a valid integer. " + ex.Message,
+                MessageBox.Show(ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        /// <summary>
+        /// Handles the Load event of the UpdateIncidentUserControl control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void UpdateIncidentUserControl_Load(object sender, EventArgs e)
         {
             this.updateButton.Enabled = false;
@@ -55,6 +88,11 @@ namespace TechSupport.UserControls
             this.textToAddTextbox.Enabled = false;
         }
 
+        /// <summary>
+        /// Handles the Click event of the ClearButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ClearButton_Click(object sender, EventArgs e)
         {
             this.ClearText();
@@ -65,6 +103,11 @@ namespace TechSupport.UserControls
             
         }
 
+        /// <summary>
+        /// Handles the Click event of the UpdateButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void UpdateButton_Click(object sender, EventArgs e)
         { 
             try
@@ -112,6 +155,9 @@ namespace TechSupport.UserControls
             }
         }
 
+        /// <summary>
+        /// Clears the text.
+        /// </summary>
         private void ClearText()
         {
             this.technicianComboBox.DataSource = null;
@@ -126,53 +172,39 @@ namespace TechSupport.UserControls
             this.textToAddTextbox.Enabled = false;
         }
 
+        /// <summary>
+        /// Handles the Click event of the CloseButton control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void CloseButton_Click(object sender, EventArgs e)
         {
+            try
+            {
+                int incidentID = int.Parse(this.incidentIDTextbox.Text);
+                
+                DateTime currentDateTime = System.DateTime.Now;
+                DialogResult lengthWarning;
+                
+                    lengthWarning = MessageBox.Show("This incident cannot be edited once it has been closed. \n Continue?",
+                   "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                    if (lengthWarning == DialogResult.OK)
+                    {
+                        this.incidentController.CloseIncident(incidentID, currentDateTime);
+                        this.updateButton.Enabled = false;
+                        this.closeButton.Enabled = false;
+                        MessageBox.Show("Incident Successfully Closed. ",
+                        "Success", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                
 
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unable to close incident. " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
-//this.customerComboBox.DataSource = this.incidentController.GetCustomers();
-//this.customerComboBox.DisplayMember = "Name";
-//this.customerComboBox.ValueMember = "CustomerID";
-
-//this.productComboBox.DataSource = this.incidentController.GetProducts();
-//this.productComboBox.DisplayMember = "Name";
-//this.productComboBox.ValueMember = "ProductCode";
-
-
-
-//try
-//{
-//    var description = this.descriptionTextBox.Text;
-//    var customerID = this.customerComboBox.SelectedValue;
-//    var title = this.titleTextBox.Text;
-//    var productCode = this.productComboBox.SelectedValue;
-
-//    var incident = new DBIncident
-//    {
-//        Description = description,
-//        CustomerID = (int)customerID,
-//        Title = title,
-//        ProductCode = (string)productCode
-//    };
-
-//    if (incidentController.IsRegistered((int)customerID, (string)productCode))
-//    {
-//        this.incidentController.AddIncident(incident);
-//        this.SuccessLabel.Text = "Incident was added!";
-//    }
-//    else
-//    {
-//        MessageBox.Show("This customer does not have a registration for this item",
-//        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-//    }
-
-
-//}
-//catch (Exception ex)
-//{
-//    MessageBox.Show("Title and description cannot be empty. \n" + ex.Message,
-//        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-//}
-//        }

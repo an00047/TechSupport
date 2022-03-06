@@ -55,7 +55,10 @@ namespace TechSupport.DAL
            
         }
 
-
+        /// <summary>
+        /// Adds the incident.
+        /// </summary>
+        /// <param name="incident">The incident.</param>
         public void AddIncident(DBIncident incident)
         {
             SqlConnection connection = TechSupportDBConnection.GetConnection();
@@ -112,13 +115,19 @@ namespace TechSupport.DAL
             }
         }
 
+        /// <summary>
+        /// Gets the incident by identifier.
+        /// </summary>
+        /// <param name="incidentID">The incident identifier.</param>
+        /// <returns></returns>
         public DBIncident GetIncidentByID(int incidentID)
         {
             DBIncident incident = new DBIncident();
             SqlConnection connection = TechSupportDBConnection.GetConnection();
             string selectStatement =
                 @"SELECT Products.ProductCode, FORMAT(Incidents.DateOpened, 'MM-dd-yyyy') as date, 
-                   Customers.Name, Incidents.Title, Incidents.Description, Incidents.TechID
+                   Customers.Name, Incidents.Title, Incidents.Description, Incidents.TechID, 
+                   Incidents.DateClosed
                 FROM Incidents 
                 JOIN Products ON Incidents.ProductCode = Products.ProductCode 
                 JOIN Customers ON Incidents.CustomerID = Customers.CustomerID 
@@ -136,8 +145,27 @@ namespace TechSupport.DAL
                         while (reader.Read())
                         {
                             incident.ProductCode = reader["ProductCode"].ToString();
-                            
-                            //incident.TechID = Convert.ToInt32(reader["TechID"]);
+
+                            try
+                            {
+                                DBNull dateClosed = (DBNull)reader["DateClosed"];
+                                incident.DateClosed = null;
+                            }
+                            catch
+                            {
+                                incident.DateClosed = (DateTime?)reader["DateClosed"];
+                            }
+
+                            try
+                            {
+                                DBNull techID = (DBNull)reader["TechID"];
+                                incident.TechID = null;
+                            }
+                            catch
+                            {
+                                incident.TechID = (int?)reader["TechID"];
+                            }
+
                             incident.DateOpened = reader["date"].ToString();
                             incident.Customer = reader["Name"].ToString();
                             incident.Title = reader["Title"].ToString();
@@ -149,6 +177,12 @@ namespace TechSupport.DAL
             return incident;
         }
 
+        /// <summary>
+        /// Updates the incident.
+        /// </summary>
+        /// <param name="incidentID">The incident identifier.</param>
+        /// <param name="description">The description.</param>
+        /// <param name="techID">The tech identifier.</param>
         public void UpdateIncident(int incidentID, string description, int techID)
         {
             SqlConnection connection = TechSupportDBConnection.GetConnection();
@@ -160,6 +194,30 @@ namespace TechSupport.DAL
             updateCommand.Parameters.AddWithValue("@techID", techID);
             updateCommand.Parameters.AddWithValue("@description", description);
 
+            using (connection)
+            {
+                connection.Open();
+                using (updateCommand)
+                {
+                    updateCommand.ExecuteNonQuery();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Closes the incident.
+        /// </summary>
+        /// <param name="incidentID">The incident identifier.</param>
+        /// <param name="currentDateTime">The current date time.</param>
+        public void CloseIncident(int incidentID, DateTime currentDateTime)
+        {
+            SqlConnection connection = TechSupportDBConnection.GetConnection();
+            string updateStatement =
+                @"UPDATE Incidents SET DateClosed = @currentDateTime
+                    WHERE IncidentID = @incidentID";
+            SqlCommand updateCommand = new SqlCommand(updateStatement, connection);
+            updateCommand.Parameters.AddWithValue("@incidentID", incidentID);
+            updateCommand.Parameters.AddWithValue("@currentDateTime", currentDateTime);
             using (connection)
             {
                 connection.Open();

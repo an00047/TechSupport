@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechSupport.model;
 
 namespace TechSupport.DAL
 {
     class TechnicianDBDAL
     {
+        /// <summary>
+        /// Gets the technicians.
+        /// </summary>
+        /// <returns></returns>
         public List<DBTechnician> GetTechnicians()
         {
             List<DBTechnician> technicianList = new List<DBTechnician>();

@@ -1,15 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechSupport.model;
 
 namespace TechSupport.DAL
 {
     class RegistrationDBDAL
     {
+        /// <summary>
+        /// Determines whether the specified customer identifier is registered.
+        /// </summary>
+        /// <param name="customerID">The customer identifier.</param>
+        /// <param name="productCode">The product code.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified customer identifier is registered; otherwise, <c>false</c>.
+        /// </returns>
         public bool IsRegistered(int customerID, string productCode)
         {
             List<DBRegistration> registrationList = new List<DBRegistration>();
