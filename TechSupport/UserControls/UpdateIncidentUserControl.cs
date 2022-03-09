@@ -113,12 +113,20 @@ namespace TechSupport.UserControls
             try
             {
                 int incidentID = int.Parse(this.incidentIDTextbox.Text);
-                int techID = (int)this.technicianComboBox.SelectedValue;
+                int? techID = (int)this.technicianComboBox.SelectedValue == 0 ? null : (int?)this.technicianComboBox.SelectedValue;
                 string description = this.descriptionTextBox.Text;
                 string textToAdd = this.textToAddTextbox.Text;
                 string dateUpdated = System.DateTime.Now.ToShortDateString();
                 string updatedDescription = description + "\r\n" + dateUpdated + " " + textToAdd;
                 DialogResult lengthWarning;
+
+                DBIncident currentIncident = this.incidentController.GetIncidentByID(incidentID);
+                int? techIDStored = currentIncident.TechID;
+                if ((techIDStored.HasValue && techIDStored.Value == techID) && currentIncident.Description == description && string.IsNullOrEmpty(textToAdd))
+                {
+                    throw new ArgumentException("There have been no changes to the form");
+                }
+
                 if (description.Length >= 200)
                 {
                     lengthWarning = MessageBox.Show("Description length is too long. Additional text will not be added. \n Continue?",
@@ -134,9 +142,7 @@ namespace TechSupport.UserControls
                    "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                     if (lengthWarning==DialogResult.OK)
                     {
-
-                        this.incidentController.UpdateIncident(incidentID, updatedDescription.Substring(0, 200), techID);
-                        
+                        this.incidentController.UpdateIncident(incidentID, updatedDescription.Substring(0, 200), techID);   
                     }
                     
                 } else
@@ -145,12 +151,12 @@ namespace TechSupport.UserControls
                     this.descriptionTextBox.Text = updatedDescription;
                     this.textToAddTextbox.Text = "";
                 }
-                
-                
+
+               
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Invalid data! Check incident ID, technician, text to add. " + ex.Message,
+                MessageBox.Show(ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -182,6 +188,10 @@ namespace TechSupport.UserControls
             try
             {
                 int incidentID = int.Parse(this.incidentIDTextbox.Text);
+                DBIncident currentIncident = this.incidentController.GetIncidentByID(incidentID);
+                if (currentIncident.TechID == null) {
+                    throw new ArgumentException("A technician must be assigned to close the incident");
+                }
                 
                 DateTime currentDateTime = System.DateTime.Now;
                 DialogResult lengthWarning;
@@ -195,7 +205,7 @@ namespace TechSupport.UserControls
                         this.closeButton.Enabled = false;
                         MessageBox.Show("Incident Successfully Closed. ",
                         "Success", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
+                    }
                 
 
 

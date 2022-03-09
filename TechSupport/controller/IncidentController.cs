@@ -146,7 +146,7 @@ namespace TechSupport.controller
         /// <param name="incidentID">The incident identifier.</param>
         /// <param name="description">The description.</param>
         /// <param name="techID">The tech identifier.</param>
-        public void UpdateIncident(int incidentID, string description, int techID)
+        public void UpdateIncident(int incidentID, string description, int? techID)
         {
             this.incidentDBSource.UpdateIncident(incidentID, description, techID);
         }

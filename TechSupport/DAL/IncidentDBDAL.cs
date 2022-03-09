@@ -183,7 +183,7 @@ namespace TechSupport.DAL
         /// <param name="incidentID">The incident identifier.</param>
         /// <param name="description">The description.</param>
         /// <param name="techID">The tech identifier.</param>
-        public void UpdateIncident(int incidentID, string description, int techID)
+        public void UpdateIncident(int incidentID, string description, int? techID)
         {
             SqlConnection connection = TechSupportDBConnection.GetConnection();
             string updateStatement =
@@ -191,7 +191,14 @@ namespace TechSupport.DAL
                     WHERE IncidentID = @incidentID";
             SqlCommand updateCommand = new SqlCommand(updateStatement, connection);
             updateCommand.Parameters.AddWithValue("@incidentID", incidentID);
-            updateCommand.Parameters.AddWithValue("@techID", techID);
+            if (techID.HasValue)
+            {
+                updateCommand.Parameters.AddWithValue("@techID", techID);
+            }
+            else
+            {
+                updateCommand.Parameters.AddWithValue("@techID", DBNull.Value);
+            }
             updateCommand.Parameters.AddWithValue("@description", description);
 
             using (connection)
