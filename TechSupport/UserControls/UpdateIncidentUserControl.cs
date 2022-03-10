@@ -34,7 +34,7 @@ namespace TechSupport.UserControls
                 {
                     int incidentID = int.Parse(this.incidentIDTextbox.Text);
                     DBIncident currentIncident = this.incidentController.GetIncidentByID(incidentID);
-                    if (currentIncident == null)
+                    if (currentIncident == null || String.IsNullOrEmpty(currentIncident.Customer))
                     {
                         throw new ArgumentException("There is no incident with that number");
                     }
@@ -44,6 +44,10 @@ namespace TechSupport.UserControls
                         this.updateButton.Enabled = true;
                         this.closeButton.Enabled = true;
                         this.textToAddTextbox.Enabled = true;
+                    }
+                    if (currentIncident.Description != null && currentIncident.Description.Length >= 200)
+                    {
+                        textToAddTextbox.Enabled = false;
                     }
                     this.customerTextBox.Text = currentIncident.Customer;
                     this.productTextBox.Text = currentIncident.ProductCode;
@@ -127,32 +131,24 @@ namespace TechSupport.UserControls
                     throw new ArgumentException("There have been no changes to the form");
                 }
 
-                if (description.Length >= 200)
-                {
-                    lengthWarning = MessageBox.Show("Description length is too long. Additional text will not be added. \n Continue?",
-                   "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-                    if(lengthWarning==DialogResult.OK)
-                    {
-                        this.incidentController.UpdateIncident(incidentID, "" , techID);
-                    }
-                }
                 if (updatedDescription.Length >= 200)
                 {
                     lengthWarning = MessageBox.Show("Description length is too long. Any characters over 200 will be truncated. \n Continue? ",
                    "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                     if (lengthWarning==DialogResult.OK)
                     {
-                        this.incidentController.UpdateIncident(incidentID, updatedDescription.Substring(0, 200), techID);   
+                        this.incidentController.UpdateIncident(incidentID, updatedDescription.Substring(0, 200), techID);
                     }
                     
                 } else
                 {
                     this.incidentController.UpdateIncident(incidentID, updatedDescription, techID);
-                    this.descriptionTextBox.Text = updatedDescription;
-                    this.textToAddTextbox.Text = "";
                 }
 
-               
+                this.descriptionTextBox.Text = updatedDescription;
+                this.textToAddTextbox.Text = "";
+
+
             }
             catch (Exception ex)
             {
@@ -196,7 +192,8 @@ namespace TechSupport.UserControls
                 DateTime currentDateTime = System.DateTime.Now;
                 DialogResult lengthWarning;
                 
-                    lengthWarning = MessageBox.Show("This incident cannot be edited once it has been closed. \n Continue?",
+                    lengthWarning = MessageBox.Show("This incident cannot be edited once it has been closed. Ensure all" +
+                        " updates are completed prior to closing. Changes will not be saved. \nContinue?",
                    "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                     if (lengthWarning == DialogResult.OK)
                     {
