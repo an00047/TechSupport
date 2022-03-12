@@ -18,7 +18,7 @@ namespace TechSupport.UserControls
 
         private void IncidentsByTechnicianUserControl_Load(object sender, EventArgs e)
         {
-            technicianList = incidentController.GetAllTechnicians();
+            technicianList = incidentController.GetAllTechniciansWithIncidents();
             this.nameComboBox.DataSource = technicianList;
         }
 

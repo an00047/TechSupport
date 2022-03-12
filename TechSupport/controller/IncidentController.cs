@@ -140,9 +140,9 @@ namespace TechSupport.controller
             return this.technicianDBSource.GetTechnicians();
         }
 
-        public List<DBTechnician> GetAllTechnicians()
+        public List<DBTechnician> GetAllTechniciansWithIncidents()
         {
-            return this.technicianDBSource.GetAllTechnicians();
+            return this.technicianDBSource.GetAllTechniciansWithIncidents();
         }
 
         /// <summary>

@@ -42,12 +42,14 @@ namespace TechSupport.DAL
             return technicianList;
         }
 
-        public List<DBTechnician> GetAllTechnicians()
+        public List<DBTechnician> GetAllTechniciansWithIncidents()
         {
             List<DBTechnician> technicianList = new List<DBTechnician>();
             SqlConnection connection = TechSupportDBConnection.GetConnection();
             string selectStatement =
-                @"SELECT * FROM Technicians;";
+                @"SELECT DISTINCT Technicians.* 
+                FROM Technicians 
+                JOIN Incidents ON Technicians.TechID = Incidents.TechID;";
 
             SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
             SqlDataReader reader = null;
