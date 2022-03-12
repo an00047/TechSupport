@@ -30,49 +30,56 @@ namespace TechSupport.UserControls
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.techComboBox = new System.Windows.Forms.ComboBox();
-            this.emailTextBox = new System.Windows.Forms.TextBox();
+            System.Windows.Forms.Label emailLabel1;
+            System.Windows.Forms.Label nameLabel;
+            System.Windows.Forms.Label phoneLabel1;
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.phoneTextBox = new System.Windows.Forms.TextBox();
             this.technicianProductDataGridView = new System.Windows.Forms.DataGridView();
-            this.techNameLabel = new System.Windows.Forms.Label();
-            this.emailLabel = new System.Windows.Forms.Label();
-            this.phoneLabel = new System.Windows.Forms.Label();
+            this.emailTextBox1 = new System.Windows.Forms.TextBox();
+            this.dBTechnicianBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.nameComboBox = new System.Windows.Forms.ComboBox();
+            this.phoneTextBox1 = new System.Windows.Forms.TextBox();
+            emailLabel1 = new System.Windows.Forms.Label();
+            nameLabel = new System.Windows.Forms.Label();
+            phoneLabel1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.technicianProductDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBTechnicianBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // techComboBox
+            // emailLabel1
             // 
-            this.techComboBox.Enabled = false;
-            this.techComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.techComboBox.FormattingEnabled = true;
-            this.techComboBox.Location = new System.Drawing.Point(235, 92);
-            this.techComboBox.Name = "techComboBox";
-            this.techComboBox.Size = new System.Drawing.Size(266, 28);
-            this.techComboBox.TabIndex = 0;
+            emailLabel1.AutoSize = true;
+            emailLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            emailLabel1.Location = new System.Drawing.Point(134, 139);
+            emailLabel1.Name = "emailLabel1";
+            emailLabel1.Size = new System.Drawing.Size(52, 20);
+            emailLabel1.TabIndex = 9;
+            emailLabel1.Text = "Email:";
             // 
-            // emailTextBox
+            // nameLabel
             // 
-            this.emailTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.emailTextBox.Location = new System.Drawing.Point(235, 141);
-            this.emailTextBox.Name = "emailTextBox";
-            this.emailTextBox.ReadOnly = true;
-            this.emailTextBox.Size = new System.Drawing.Size(266, 26);
-            this.emailTextBox.TabIndex = 1;
+            nameLabel.AutoSize = true;
+            nameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            nameLabel.Location = new System.Drawing.Point(131, 91);
+            nameLabel.Name = "nameLabel";
+            nameLabel.Size = new System.Drawing.Size(55, 20);
+            nameLabel.TabIndex = 11;
+            nameLabel.Text = "Name:";
+            // 
+            // phoneLabel1
+            // 
+            phoneLabel1.AutoSize = true;
+            phoneLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            phoneLabel1.Location = new System.Drawing.Point(134, 192);
+            phoneLabel1.Name = "phoneLabel1";
+            phoneLabel1.Size = new System.Drawing.Size(59, 20);
+            phoneLabel1.TabIndex = 13;
+            phoneLabel1.Text = "Phone:";
             // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // phoneTextBox
-            // 
-            this.phoneTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.phoneTextBox.Location = new System.Drawing.Point(235, 189);
-            this.phoneTextBox.Name = "phoneTextBox";
-            this.phoneTextBox.ReadOnly = true;
-            this.phoneTextBox.Size = new System.Drawing.Size(138, 26);
-            this.phoneTextBox.TabIndex = 3;
             // 
             // technicianProductDataGridView
             // 
@@ -82,64 +89,71 @@ namespace TechSupport.UserControls
             this.technicianProductDataGridView.Size = new System.Drawing.Size(521, 232);
             this.technicianProductDataGridView.TabIndex = 4;
             // 
-            // techNameLabel
+            // emailTextBox1
             // 
-            this.techNameLabel.AutoSize = true;
-            this.techNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.techNameLabel.Location = new System.Drawing.Point(130, 92);
-            this.techNameLabel.Name = "techNameLabel";
-            this.techNameLabel.Size = new System.Drawing.Size(51, 20);
-            this.techNameLabel.TabIndex = 5;
-            this.techNameLabel.Text = "Name";
+            this.emailTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dBTechnicianBindingSource, "Email", true));
+            this.emailTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.emailTextBox1.Location = new System.Drawing.Point(199, 136);
+            this.emailTextBox1.Name = "emailTextBox1";
+            this.emailTextBox1.ReadOnly = true;
+            this.emailTextBox1.Size = new System.Drawing.Size(294, 26);
+            this.emailTextBox1.TabIndex = 10;
             // 
-            // emailLabel
+            // dBTechnicianBindingSource
             // 
-            this.emailLabel.AutoSize = true;
-            this.emailLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.emailLabel.Location = new System.Drawing.Point(130, 141);
-            this.emailLabel.Name = "emailLabel";
-            this.emailLabel.Size = new System.Drawing.Size(48, 20);
-            this.emailLabel.TabIndex = 6;
-            this.emailLabel.Text = "Email";
+            this.dBTechnicianBindingSource.DataSource = typeof(TechSupport.model.DBTechnician);
             // 
-            // phoneLabel
+            // nameComboBox
             // 
-            this.phoneLabel.AutoSize = true;
-            this.phoneLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.phoneLabel.Location = new System.Drawing.Point(130, 189);
-            this.phoneLabel.Name = "phoneLabel";
-            this.phoneLabel.Size = new System.Drawing.Size(55, 20);
-            this.phoneLabel.TabIndex = 7;
-            this.phoneLabel.Text = "Phone";
+            this.nameComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dBTechnicianBindingSource, "Name", true));
+            this.nameComboBox.DataSource = this.dBTechnicianBindingSource;
+            this.nameComboBox.DisplayMember = "Name";
+            this.nameComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.nameComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.nameComboBox.FormattingEnabled = true;
+            this.nameComboBox.Location = new System.Drawing.Point(199, 88);
+            this.nameComboBox.Name = "nameComboBox";
+            this.nameComboBox.Size = new System.Drawing.Size(294, 28);
+            this.nameComboBox.TabIndex = 12;
+            this.nameComboBox.SelectedIndexChanged += new System.EventHandler(this.NameComboBox_SelectedIndexChanged);
             // 
-            // IncidentsByTechnician
+            // phoneTextBox1
+            // 
+            this.phoneTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dBTechnicianBindingSource, "Phone", true));
+            this.phoneTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.phoneTextBox1.Location = new System.Drawing.Point(199, 189);
+            this.phoneTextBox1.Name = "phoneTextBox1";
+            this.phoneTextBox1.ReadOnly = true;
+            this.phoneTextBox1.Size = new System.Drawing.Size(206, 26);
+            this.phoneTextBox1.TabIndex = 14;
+            // 
+            // IncidentsByTechnicianUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.phoneLabel);
-            this.Controls.Add(this.emailLabel);
-            this.Controls.Add(this.techNameLabel);
+            this.Controls.Add(phoneLabel1);
+            this.Controls.Add(this.phoneTextBox1);
+            this.Controls.Add(nameLabel);
+            this.Controls.Add(this.nameComboBox);
+            this.Controls.Add(emailLabel1);
+            this.Controls.Add(this.emailTextBox1);
             this.Controls.Add(this.technicianProductDataGridView);
-            this.Controls.Add(this.phoneTextBox);
-            this.Controls.Add(this.emailTextBox);
-            this.Controls.Add(this.techComboBox);
-            this.Name = "IncidentsByTechnician";
+            this.Name = "IncidentsByTechnicianUserControl";
             this.Size = new System.Drawing.Size(835, 588);
+            this.Load += new System.EventHandler(this.IncidentsByTechnicianUserControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.technicianProductDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBTechnicianBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ComboBox techComboBox;
-        private System.Windows.Forms.TextBox emailTextBox;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.TextBox phoneTextBox;
         private System.Windows.Forms.DataGridView technicianProductDataGridView;
-        private System.Windows.Forms.Label techNameLabel;
-        private System.Windows.Forms.Label emailLabel;
-        private System.Windows.Forms.Label phoneLabel;
+        private System.Windows.Forms.BindingSource dBTechnicianBindingSource;
+        private System.Windows.Forms.TextBox emailTextBox1;
+        private System.Windows.Forms.ComboBox nameComboBox;
+        private System.Windows.Forms.TextBox phoneTextBox1;
     }
 }

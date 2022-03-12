@@ -41,5 +41,38 @@ namespace TechSupport.DAL
 
             return technicianList;
         }
+
+        public List<DBTechnician> GetAllTechnicians()
+        {
+            List<DBTechnician> technicianList = new List<DBTechnician>();
+            SqlConnection connection = TechSupportDBConnection.GetConnection();
+            string selectStatement =
+                @"SELECT * FROM Technicians;";
+
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            SqlDataReader reader = null;
+
+            using (connection)
+            {
+                connection.Open();
+                using (selectCommand)
+                {
+                    using (reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            DBTechnician technician = new DBTechnician();
+                            technician.TechID = Convert.ToInt32(reader["TechID"]);
+                            technician.Name = reader["Name"].ToString();
+                            technician.Email = reader["Email"].ToString();
+                            technician.Phone = reader["Phone"].ToString();
+                            technicianList.Add(technician);
+                        }
+                    }
+                }
+            }
+
+            return technicianList;
+        }
     }
 }

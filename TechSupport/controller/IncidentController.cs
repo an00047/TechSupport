@@ -140,6 +140,11 @@ namespace TechSupport.controller
             return this.technicianDBSource.GetTechnicians();
         }
 
+        public List<DBTechnician> GetAllTechnicians()
+        {
+            return this.technicianDBSource.GetAllTechnicians();
+        }
+
         /// <summary>
         /// Updates the incident.
         /// </summary>
