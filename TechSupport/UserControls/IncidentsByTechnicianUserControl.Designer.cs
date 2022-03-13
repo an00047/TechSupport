@@ -35,14 +35,20 @@ namespace TechSupport.UserControls
             System.Windows.Forms.Label phoneLabel1;
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.technicianProductDataGridView = new System.Windows.Forms.DataGridView();
+            this.dBIncidentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.emailTextBox1 = new System.Windows.Forms.TextBox();
             this.dBTechnicianBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nameComboBox = new System.Windows.Forms.ComboBox();
             this.phoneTextBox1 = new System.Windows.Forms.TextBox();
+            this.productCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateOpenedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.customerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             emailLabel1 = new System.Windows.Forms.Label();
             nameLabel = new System.Windows.Forms.Label();
             phoneLabel1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.technicianProductDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBIncidentBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dBTechnicianBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,11 +89,22 @@ namespace TechSupport.UserControls
             // 
             // technicianProductDataGridView
             // 
+            this.technicianProductDataGridView.AutoGenerateColumns = false;
             this.technicianProductDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.technicianProductDataGridView.Location = new System.Drawing.Point(134, 235);
+            this.technicianProductDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.productCodeDataGridViewTextBoxColumn,
+            this.dateOpenedDataGridViewTextBoxColumn,
+            this.customerDataGridViewTextBoxColumn,
+            this.titleDataGridViewTextBoxColumn});
+            this.technicianProductDataGridView.DataSource = this.dBIncidentBindingSource;
+            this.technicianProductDataGridView.Location = new System.Drawing.Point(135, 234);
             this.technicianProductDataGridView.Name = "technicianProductDataGridView";
             this.technicianProductDataGridView.Size = new System.Drawing.Size(521, 232);
             this.technicianProductDataGridView.TabIndex = 4;
+            // 
+            // dBIncidentBindingSource
+            // 
+            this.dBIncidentBindingSource.DataSource = typeof(TechSupport.model.DBIncident);
             // 
             // emailTextBox1
             // 
@@ -127,6 +144,34 @@ namespace TechSupport.UserControls
             this.phoneTextBox1.Size = new System.Drawing.Size(206, 26);
             this.phoneTextBox1.TabIndex = 14;
             // 
+            // productCodeDataGridViewTextBoxColumn
+            // 
+            this.productCodeDataGridViewTextBoxColumn.DataPropertyName = "ProductCode";
+            this.productCodeDataGridViewTextBoxColumn.HeaderText = "ProductCode";
+            this.productCodeDataGridViewTextBoxColumn.Name = "productCodeDataGridViewTextBoxColumn";
+            this.productCodeDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // dateOpenedDataGridViewTextBoxColumn
+            // 
+            this.dateOpenedDataGridViewTextBoxColumn.DataPropertyName = "DateOpened";
+            this.dateOpenedDataGridViewTextBoxColumn.HeaderText = "DateOpened";
+            this.dateOpenedDataGridViewTextBoxColumn.Name = "dateOpenedDataGridViewTextBoxColumn";
+            this.dateOpenedDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // customerDataGridViewTextBoxColumn
+            // 
+            this.customerDataGridViewTextBoxColumn.DataPropertyName = "Customer";
+            this.customerDataGridViewTextBoxColumn.HeaderText = "Customer";
+            this.customerDataGridViewTextBoxColumn.Name = "customerDataGridViewTextBoxColumn";
+            this.customerDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // titleDataGridViewTextBoxColumn
+            // 
+            this.titleDataGridViewTextBoxColumn.DataPropertyName = "Title";
+            this.titleDataGridViewTextBoxColumn.HeaderText = "Title";
+            this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
+            this.titleDataGridViewTextBoxColumn.Width = 200;
+            // 
             // IncidentsByTechnicianUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -142,6 +187,7 @@ namespace TechSupport.UserControls
             this.Size = new System.Drawing.Size(835, 588);
             this.Load += new System.EventHandler(this.IncidentsByTechnicianUserControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.technicianProductDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBIncidentBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dBTechnicianBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -155,5 +201,10 @@ namespace TechSupport.UserControls
         private System.Windows.Forms.TextBox emailTextBox1;
         private System.Windows.Forms.ComboBox nameComboBox;
         private System.Windows.Forms.TextBox phoneTextBox1;
+        private System.Windows.Forms.BindingSource dBIncidentBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn productCodeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateOpenedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn customerDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
     }
 }

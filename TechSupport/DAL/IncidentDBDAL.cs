@@ -234,6 +234,47 @@ namespace TechSupport.DAL
                 }
             }
         }
+        
+        public List<DBIncident> GetOpenIncidentsByTechnician(int techID)
+        {
+            List<DBIncident> openIncidentList = new List<DBIncident>();
+            SqlConnection connection = TechSupportDBConnection.GetConnection();
+            string selectStatement =
+                @"  SELECT Products.Name AS productName, FORMAT(Incidents.DateOpened, 'MM-dd-yyyy') as date, Customers.Name, Incidents.title
+                  FROM Incidents 
+                  JOIN Products ON Incidents.ProductCode = Products.ProductCode
+                  JOIN Technicians ON Incidents.TechID = Technicians.TechID
+                  JOIN Customers ON Incidents.CustomerID = Customers.CustomerID
+                  WHERE (Incidents.DateClosed IS NULL or Incidents.DateClosed = '')
+                  AND (Incidents.techID = @techID)";
+
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@techID", techID);
+            SqlDataReader reader = null;
+
+
+            using (connection)
+            {
+                connection.Open();
+                using (selectCommand)
+                {
+                    using (reader = selectCommand.ExecuteReader()) 
+                    {
+                        while (reader.Read())
+                        {
+                            DBIncident incident = new DBIncident();
+                            incident.ProductCode = reader["productName"].ToString();
+                            incident.DateOpened = reader["date"].ToString();
+                            incident.Customer = reader["Name"].ToString();
+                            incident.Title = reader["Title"].ToString();
+                            openIncidentList.Add(incident);
+                        }
+                    }
+                }
+            }
+
+            return openIncidentList;
+        }
 
     }
 }

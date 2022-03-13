@@ -165,5 +165,10 @@ namespace TechSupport.controller
         {
             this.incidentDBSource.CloseIncident(incidentID, currentDateTime);
         }
+
+        public List<DBIncident> GetOpenIncidentsByTechnician(int techID)
+        {
+            return this.incidentDBSource.GetOpenIncidentsByTechnician(techID);
+        }
     }
 }
