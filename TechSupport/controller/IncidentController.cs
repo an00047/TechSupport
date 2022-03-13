@@ -166,6 +166,11 @@ namespace TechSupport.controller
             this.incidentDBSource.CloseIncident(incidentID, currentDateTime);
         }
 
+        /// <summary>
+        /// Gets the open incidents by technician.
+        /// </summary>
+        /// <param name="techID">The tech identifier.</param>
+        /// <returns></returns>
         public List<DBIncident> GetOpenIncidentsByTechnician(int techID)
         {
             return this.incidentDBSource.GetOpenIncidentsByTechnician(techID);

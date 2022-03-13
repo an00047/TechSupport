@@ -42,6 +42,10 @@ namespace TechSupport.DAL
             return technicianList;
         }
 
+        /// <summary>
+        /// Gets all technicians with incidents.
+        /// </summary>
+        /// <returns>The list of Technicians who have incidents</returns>
         public List<DBTechnician> GetAllTechniciansWithIncidents()
         {
             List<DBTechnician> technicianList = new List<DBTechnician>();

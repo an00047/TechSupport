@@ -234,7 +234,12 @@ namespace TechSupport.DAL
                 }
             }
         }
-        
+
+        /// <summary>
+        /// Gets the open incidents by technician.
+        /// </summary>
+        /// <param name="techID">The tech identifier.</param>
+        /// <returns>The list of incidents</returns>
         public List<DBIncident> GetOpenIncidentsByTechnician(int techID)
         {
             List<DBIncident> openIncidentList = new List<DBIncident>();
