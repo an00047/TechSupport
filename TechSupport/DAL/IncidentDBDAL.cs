@@ -268,7 +268,7 @@ namespace TechSupport.DAL
                         while (reader.Read())
                         {
                             DBIncident incident = new DBIncident();
-                            incident.ProductCode = reader["productName"].ToString();
+                            incident.ProductName = reader["productName"].ToString();
                             incident.DateOpened = reader["date"].ToString();
                             incident.Customer = reader["Name"].ToString();
                             incident.Title = reader["Title"].ToString();

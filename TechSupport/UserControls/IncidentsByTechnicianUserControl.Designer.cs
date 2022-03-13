@@ -40,7 +40,7 @@ namespace TechSupport.UserControls
             this.dBTechnicianBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nameComboBox = new System.Windows.Forms.ComboBox();
             this.phoneTextBox1 = new System.Windows.Forms.TextBox();
-            this.productCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateOpenedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -92,7 +92,7 @@ namespace TechSupport.UserControls
             this.technicianProductDataGridView.AutoGenerateColumns = false;
             this.technicianProductDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.technicianProductDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.productCodeDataGridViewTextBoxColumn,
+            this.ProductName,
             this.dateOpenedDataGridViewTextBoxColumn,
             this.customerDataGridViewTextBoxColumn,
             this.titleDataGridViewTextBoxColumn});
@@ -144,12 +144,12 @@ namespace TechSupport.UserControls
             this.phoneTextBox1.Size = new System.Drawing.Size(206, 26);
             this.phoneTextBox1.TabIndex = 14;
             // 
-            // productCodeDataGridViewTextBoxColumn
+            // ProductName
             // 
-            this.productCodeDataGridViewTextBoxColumn.DataPropertyName = "ProductCode";
-            this.productCodeDataGridViewTextBoxColumn.HeaderText = "ProductCode";
-            this.productCodeDataGridViewTextBoxColumn.Name = "productCodeDataGridViewTextBoxColumn";
-            this.productCodeDataGridViewTextBoxColumn.Width = 200;
+            this.ProductName.DataPropertyName = "ProductName";
+            this.ProductName.HeaderText = "Product";
+            this.ProductName.Name = "ProductName";
+            this.ProductName.Width = 200;
             // 
             // dateOpenedDataGridViewTextBoxColumn
             // 
@@ -202,7 +202,7 @@ namespace TechSupport.UserControls
         private System.Windows.Forms.ComboBox nameComboBox;
         private System.Windows.Forms.TextBox phoneTextBox1;
         private System.Windows.Forms.BindingSource dBIncidentBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn productCodeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateOpenedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn customerDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
