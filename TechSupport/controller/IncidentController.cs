@@ -114,6 +114,14 @@ namespace TechSupport.controller
         /// </returns>
         public bool IsRegistered(int customerID, string productCode)
         {
+            if (productCode == null)
+            {
+                throw new ArgumentException("Product code cannot be null");
+            }
+            if (customerID < 0)
+            {
+                throw new ArgumentException("Customer ID cannot be negative");
+            }
             return this.registrationDBSource.IsRegistered(customerID, productCode);
         }
 
@@ -151,19 +159,23 @@ namespace TechSupport.controller
         /// <param name="incidentID">The incident identifier.</param>
         /// <param name="description">The description.</param>
         /// <param name="techID">The tech identifier.</param>
-        public void UpdateIncident(int incidentID, string description, int? techID)
+        public void UpdateIncident(int incidentID, DateTime? oldDateClosed, string oldDescription, int? oldTechID, DateTime? newDateClosed, string newDescription, int? newTechID)
         {
-            this.incidentDBSource.UpdateIncident(incidentID, description, techID);
-        }
+            if (incidentID <= 0)
+            {
+                throw new ArgumentException("Incident ID cannot be negative");
+            }
+            if (oldDescription == null)
+            {
+                throw new ArgumentException("Old description cannot be null");
+            }
 
-        /// <summary>
-        /// Closes the incident.
-        /// </summary>
-        /// <param name="incidentID">The incident identifier.</param>
-        /// <param name="currentDateTime">The current date time.</param>
-        public void CloseIncident(int incidentID, DateTime currentDateTime)
-        {
-            this.incidentDBSource.CloseIncident(incidentID, currentDateTime);
+            if (newDescription == null)
+            {
+                throw new ArgumentException("New description cannot be null");
+            }
+
+            this.incidentDBSource.UpdateIncident(incidentID, oldDateClosed, oldDescription, oldTechID, newDateClosed, newDescription, newTechID);
         }
 
         /// <summary>
@@ -173,6 +185,10 @@ namespace TechSupport.controller
         /// <returns></returns>
         public List<DBIncident> GetOpenIncidentsByTechnician(int techID)
         {
+            if (techID <= 0)
+            {
+                throw new ArgumentException("Tech ID cannot be negative");
+            }
             return this.incidentDBSource.GetOpenIncidentsByTechnician(techID);
         }
     }

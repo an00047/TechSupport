@@ -183,48 +183,48 @@ namespace TechSupport.DAL
         /// <param name="incidentID">The incident identifier.</param>
         /// <param name="description">The description.</param>
         /// <param name="techID">The tech identifier.</param>
-        public void UpdateIncident(int incidentID, string description, int? techID)
+        public void UpdateIncident(int incidentID, DateTime? oldDateClosed, string oldDescription, int? oldTechID, DateTime? newDateClosed, string newDescription, int? newTechID)
         {
             SqlConnection connection = TechSupportDBConnection.GetConnection();
             string updateStatement =
-                @"UPDATE Incidents SET Description = @description, TechID = @techID
-                    WHERE IncidentID = @incidentID";
+                @"UPDATE Incidents SET Description = @newDescription, TechID = @newTechID
+                    WHERE IncidentID = @incidentID AND Description = @oldDescription
+                    AND (TechID = @oldTechID OR TechID IS NULL AND @oldTechID IS NULL)
+                    AND (DateClosed = @oldDateClosed OR DateClosed IS NULL AND @oldDateClosed IS NULL)";
             SqlCommand updateCommand = new SqlCommand(updateStatement, connection);
             updateCommand.Parameters.AddWithValue("@incidentID", incidentID);
-            if (techID.HasValue)
-            {
-                updateCommand.Parameters.AddWithValue("@techID", techID);
-            }
+
+            if (oldTechID.HasValue)
+                updateCommand.Parameters.AddWithValue("@oldTechID", oldTechID);
             else
-            {
-                updateCommand.Parameters.AddWithValue("@techID", DBNull.Value);
-            }
-            updateCommand.Parameters.AddWithValue("@description", description);
+                updateCommand.Parameters.AddWithValue("@oldTechId", DBNull.Value);
 
-            using (connection)
-            {
-                connection.Open();
-                using (updateCommand)
-                {
-                    updateCommand.ExecuteNonQuery();
-                }
-            }
-        }
+            if (oldDescription != "")
+                updateCommand.Parameters.AddWithValue("@oldDescription", oldDescription);
+            else
+                updateCommand.Parameters.AddWithValue("@oldDescription", DBNull.Value);
 
-        /// <summary>
-        /// Closes the incident.
-        /// </summary>
-        /// <param name="incidentID">The incident identifier.</param>
-        /// <param name="currentDateTime">The current date time.</param>
-        public void CloseIncident(int incidentID, DateTime currentDateTime)
-        {
-            SqlConnection connection = TechSupportDBConnection.GetConnection();
-            string updateStatement =
-                @"UPDATE Incidents SET DateClosed = @currentDateTime
-                    WHERE IncidentID = @incidentID";
-            SqlCommand updateCommand = new SqlCommand(updateStatement, connection);
-            updateCommand.Parameters.AddWithValue("@incidentID", incidentID);
-            updateCommand.Parameters.AddWithValue("@currentDateTime", currentDateTime);
+            if (oldDateClosed != null)
+                updateCommand.Parameters.AddWithValue("@oldDateClosed", oldDateClosed);
+            else
+                updateCommand.Parameters.AddWithValue("@oldDateClosed", DBNull.Value);
+
+            if (newTechID.HasValue)
+                updateCommand.Parameters.AddWithValue("@newTechID", newTechID);
+            else
+                updateCommand.Parameters.AddWithValue("@newTechId", DBNull.Value);
+
+            if (newDescription != "")
+                updateCommand.Parameters.AddWithValue("@newDescription", newDescription);
+            else
+                updateCommand.Parameters.AddWithValue("@newDescription", DBNull.Value);
+
+            if (newDateClosed != null) 
+                updateCommand.Parameters.AddWithValue("@newDateClosed", newDateClosed);
+            else
+                updateCommand.Parameters.AddWithValue("@newDateClosed", DBNull.Value);
+
+
             using (connection)
             {
                 connection.Open();
